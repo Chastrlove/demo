@@ -42,10 +42,13 @@ export class Store {
         currentDefinitionsPath: "",
     };
 
-    public constructor() {
+    public constructor(loader?: (store: Store) => {}) {
         this.leftModule = new LeftModuleStore(this);
         this.rightModule = new RightModuleStore(this);
         this.centerModuleStore = new CenterModuleStore(this);
+        if (loader) {
+            loader(this);
+        }
     }
 
     @action
