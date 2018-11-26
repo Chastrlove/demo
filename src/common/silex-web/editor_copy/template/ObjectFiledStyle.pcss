@@ -1,0 +1,59 @@
+.fieldsetContainer {
+    padding: 0px 0px 15px;
+    cursor: move;
+    background-color: #f0eff4;
+    position: relative;
+    &:hover{
+        border: 1PX dashed #38adff;
+        .deleteIcon {
+            display: block;
+        }
+    }
+
+    .deleteIcon {
+        display: none;
+        position: absolute;
+        right: 1px;
+        top: 1px;
+        height: 18px;
+        width: 18px;
+        z-index: 1;
+        text-align: center;
+        line-height: 17px;
+        background-color: #38adff;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .objectFieldSet{
+        background-color: #ffffff;
+        cursor:move;
+    }
+    .titleField{
+        border-bottom: 1PX solid #f0eff4;
+        font-size: 11px;
+        padding-left: 10px;
+        height: 45px;
+        line-height: 45px;
+        color: #666;
+        background-color: #ffffff;
+    }
+    .propsContainer{
+        padding: 1px 0px;
+        background-color: #ffffff;
+    }
+    .fieldSetBottom{
+        width: 100%;
+        height: 10px;
+        background-color: #ffffff;
+    }
+}
+
+.activeFieldSetItem {
+    border: 1PX solid #38adff;
+}
+
+
+
