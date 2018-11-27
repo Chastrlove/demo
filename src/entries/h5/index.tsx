@@ -1,7 +1,8 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import AppView from '../index/app.view';
-import './index.css';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+
+import AppView from "../../page/h5/h5.view";
+
 import registerServiceWorker from '../../registerServiceWorker';
 
 ReactDOM.render(
