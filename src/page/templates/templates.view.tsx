@@ -7,10 +7,15 @@ import TemplatesStore from "./templates.store";
 import * as styles from './templates.style.pcss';
 import ListView from "./list.view";
 import DatasView from "./datas.view";
+import FormView from "./form.view";
 
 @observer
 export default class TemplatesView extends React.Component {
     private store = new TemplatesStore();
+
+    private showForm = () => {
+        this.store.setShowForm();
+    }
 
     public render() {
         const store = this.store;
@@ -34,21 +39,21 @@ export default class TemplatesView extends React.Component {
                     <Card
                         title={store.title}
                         extra={
-                            <Link to={"/web"}>
-                                <Button
-                                    type="primary"
-                                    style={{width: "100%"}}
-                                    htmlType={"button"}
-                                >
-                                    <Icon type="plus"/> 新增表单
-                                </Button>
-                            </Link>
+                            <Button
+                                type="primary"
+                                style={{width: "100%"}}
+                                htmlType={"button"}
+                                onClick={this.showForm}
+                            >
+                                <Icon type="plus"/> 新增表单
+                            </Button>
                         }
                     >
                         <DatasView store={store}/>
                     </Card>
 
                 </Layout.Content>
+                <FormView store={store}/>
             </Layout>
         );
     }

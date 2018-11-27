@@ -1,5 +1,5 @@
 import {action, computed, observable} from "mobx";
-import appStore from '../../app.store';
+import appStore from 'entries/index/app.store';
 import {TemplateApi, DataApi} from "api";
 
 export default class TemplatesStore {
@@ -32,6 +32,16 @@ export default class TemplatesStore {
         this.setCurrentTemplateKeys([key]);
         appStore.setCurrentTemplate(item);
     }
+
+    @observable
+    public showForm = false;
+    @action
+    public setShowForm = (showForm = !this.showForm) => this.showForm = showForm;
+
+    @observable
+    public currentData = {};
+    @action
+    public setCurrentData = (currentData = {}) => this.currentData = currentData;
 
     @computed
     public get title() {

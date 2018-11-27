@@ -1,6 +1,6 @@
 import {action, observable} from "mobx";
 import {routes} from "./route";
-import {IItem} from "./component/headerMenu/HeaderMenu";
+import {IItem} from "../../component/headerMenu/HeaderMenu";
 
 export class AppStore {
 
