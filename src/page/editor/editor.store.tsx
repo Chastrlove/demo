@@ -17,9 +17,11 @@ export default class EditorStore {
     @action
     public setTitle = (title = '') => this.title = title;
 
-    public addWidget = (data) => {
-        return EditorStore.widgetApi.addWidget(data);
-    };
+
+    @observable
+    public loading = false;
+    @action
+    public setLoading = (loading = !this.loading) =>this.loading = loading;
 
     public loadWidgets = () => {
         return EditorStore.widgetApi.getWidgets();

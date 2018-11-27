@@ -13,6 +13,7 @@ export default class EditorView extends React.Component {
     private _onSubmit = async () => {
         const editorStore = this.editorStore;
         const title = editorStore.title;
+        this.editorStore.setLoading();
         if (_.isEmpty(title)) {
             message.warn('请输入表单名称');
             return;
@@ -37,8 +38,10 @@ export default class EditorView extends React.Component {
                 ui$title: title
             })
         }).then((res: any) => {
+            this.editorStore.setLoading();
             message.info('提交成功')
         }).catch(() => {
+            this.editorStore.setLoading();
             message.error('新增失败')
         })
     };
@@ -48,7 +51,7 @@ export default class EditorView extends React.Component {
     }
 
     public componentWillMount(): void {
-        this.editorStore.setTitle(_.uniqueId('自定义表单模板_'));
+        this.editorStore.setTitle(`自定义表单模板_${Date.now()}`);
     }
 
     public componentWillUnmount(): void {
@@ -63,6 +66,7 @@ export default class EditorView extends React.Component {
                 title={<Input style={{width: "25%"}} value={title} placeholder={'请输入名称'} onChange={this.changeTitle}/>}
                 extra={
                     <Button
+                        loading={editorStore.loading}
                         type="primary"
                         onClick={this._onSubmit}
                     >
