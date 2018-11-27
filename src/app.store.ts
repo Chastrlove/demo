@@ -8,12 +8,6 @@ export class AppStore {
 
     public masterMenuData: IItem[] = [
         {
-            id: "datas",
-            name: "datas",
-            icon: "sss",
-            path: "/datas",
-        },
-        {
             id: "editor",
             name: "editor",
             icon: "sss",
