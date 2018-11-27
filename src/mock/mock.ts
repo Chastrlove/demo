@@ -14,7 +14,7 @@ export default () => {
             "updateBy": "aliquip exercitation ut",
             "updateTime": 3333,
             "schema": {
-                "type": "array",
+                "type": "string",
                 "title": "多选框",
                 "enums": ["选项1", "选项2", "选项3"],
                 "items": {"type": "string", "default": ""},
@@ -22,14 +22,15 @@ export default () => {
                     "title": {"type": "string", "title": "名称", "description": "注：最多20字", "maxLength": 20},
                     "enums": {
                         "type": "array",
-                        "title": "选项",
+                        "title": "选项配置",
                         "description": "最多50项，每项最多20字",
                         "maxItems": 50,
                         "minItems": 1,
-                        "items": {"type": "string", "default": ""}
+                        "items": {"type": "string", "default": "", "maxLength": 20}
                     },
                     "_ui$required": {"type": "boolean", "title": "验证", "description": "验证（如不勾选，提交表单时不校验）"},
-                    "_ui$print": {"type": "boolean", "title": "打印", "description": "参与打印（如不勾选，打印时不显示该项）"}
+                    "_ui$print": {"type": "boolean", "title": "打印", "description": "参与打印（如不勾选，打印时不显示该项）"},
+                    "_ui$placeholder": {"type": "string", "title": "提示", },
                 }
             },
             "uiSchema": {"ui$widget": "select", "ui$placeholder": "请选择"},
@@ -37,7 +38,8 @@ export default () => {
                 "title": {"ui$widget": "text", "ui$placeholder": "请输入控件名称"},
                 "enums": {"ui$widget": "text", "ui$placeholder": "请输入"},
                 "_ui$required": {"ui$widget": "checkbox"},
-                "_ui$print": {"ui$widget": "checkbox"}
+                "_ui$print": {"ui$widget": "checkbox"},
+                "_ui$placeholder": {"ui$widget": "text", "ui$placeholder": "请输入控件名称"}
             }
         },
     ])
