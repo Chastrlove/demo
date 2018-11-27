@@ -1,7 +1,7 @@
 import {observer} from 'mobx-react';
 import * as React from 'react';
 import {Location} from "history";
-import {Layout, Button, Icon} from 'antd';
+import {Layout, Button, Icon, Card} from 'antd';
 import {Link} from "react-router-dom";
 import TemplatesStore from "./templates.store";
 import * as styles from './templates.style.pcss';
@@ -16,7 +16,7 @@ export default class TemplatesView extends React.Component {
         const store = this.store;
         return (
             <Layout>
-                <Layout.Sider theme={"light"}>
+                <Layout.Sider theme={"light"} width={250}>
                     <div className={styles.temp}>
                         <Link to={"/editor"}>
                             <Button
@@ -31,7 +31,23 @@ export default class TemplatesView extends React.Component {
                     <ListView store={store}/>
                 </Layout.Sider>
                 <Layout.Content>
-                    <DatasView store={store}/>
+                    <Card
+                        title="Card title"
+                        extra={
+                            <Link to={"/web"}>
+                                <Button
+                                    type="primary"
+                                    style={{width: "100%"}}
+                                    htmlType={"button"}
+                                >
+                                    <Icon type="plus"/> 新增表单
+                                </Button>
+                            </Link>
+                        }
+                    >
+                        <DatasView store={store}/>
+                    </Card>
+
                 </Layout.Content>
             </Layout>
         );

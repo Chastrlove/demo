@@ -25,21 +25,25 @@ export class AppStore {
             icon: "sss",
             path: "/templates",
         },
-        {
-            id: "web",
-            name: "提交表单",
-            icon: "sss",
-            path: "/web",
-        },
+        // {
+        //     id: "web",
+        //     name: "提交表单",
+        //     icon: "sss",
+        //     path: "/web",
+        // },
     ];
 
     @observable
     public selectedKeys = [window.location.hash.replace("#/", "")];
 
     @action
-    public changeMenu = (path: string[]) => {
-        this.selectedKeys = path;
-    }
+    public changeMenu = (path: string[]) => this.selectedKeys = path;
+
+    @observable
+    public currentTemplate = {};
+
+    @action
+    public setCurrentTemplate = (currentTemplate = {}) => this.currentTemplate = currentTemplate;
 }
 
 export default new AppStore();

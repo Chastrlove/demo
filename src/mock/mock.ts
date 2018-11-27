@@ -35,12 +35,12 @@ export default () => {
                             "default": ""
                         }
                     },
-                    "$ui$required": {
+                    "_ui$required": {
                         type: "boolean",
                         title: "验证",
                         description: "验证（如不勾选，提交表单时不校验）"
                     },
-                    "$ui$print": {
+                    "_ui$print": {
                         type: "boolean",
                         title: "打印",
                         description: "参与打印（如不勾选，打印时不显示该项）"
@@ -60,10 +60,10 @@ export default () => {
                     "ui$widget": "text",
                     "ui$placeholder": "请输入"
                 },
-                "$ui$required": {
+                "_ui$required": {
                     "ui$widget": "checkbox",
                 },
-                "$ui$print": {
+                "_ui$print": {
                     "ui$widget": "checkbox",
                 },
             }

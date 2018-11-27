@@ -37,5 +37,5 @@ export interface EditFormBean {
 export type EditFormBeanType = keyof EditFormBean;
 
 export const SPLIT_PATH = "_$_";
-export const UISCHEMA_PROPS_FRONT = "$ui$";
+export const UISCHEMA_PROPS_FRONT = "_ui$";
 export const UISCHEMA_FRONT = "ui$";

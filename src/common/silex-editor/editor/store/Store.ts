@@ -15,10 +15,6 @@ import {
 } from "../Types";
 import {CenterModuleStore} from "./CenterModuleStore";
 
-const widgetApi = new WidgetApi({
-  basePath: 'http://localhost:3000/api/v1'
-});
-
 export class Store {
     public leftModule: LeftModuleStore;
     public rightModule: RightModuleStore;
@@ -147,14 +143,7 @@ export class Store {
     }
 
     @action
-    public addWidget = (data) =>  {
-      return widgetApi.addWidget(data);
-    };
-
-    @action
     public setForm = () => {
-        console.log(toJS(this.form));
-
         this.form = toJS(this.form);
     };
     /**
