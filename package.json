@@ -124,5 +124,12 @@
     "presets": [
       "react-app"
     ]
+  },
+  "proxy": {
+    "/api/": {
+      "target": "http://100.84.46.218:3000",
+      "changeOrigin": true,
+      "secure": false
+    }
   }
 }
