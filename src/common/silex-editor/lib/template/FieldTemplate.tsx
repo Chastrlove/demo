@@ -40,6 +40,7 @@ export class FieldTemplate extends React.Component<FieldTemplateProps, any> {
             required,
             formItemProps,
             displayLabel,
+            description
         } = _.merge({}, FieldTemplate.defaultProps, this.props);
 
         if (hidden) {
@@ -55,7 +56,8 @@ export class FieldTemplate extends React.Component<FieldTemplateProps, any> {
 
         return displayLabel ? (
             <FormItem className={classNames} {...props}>
-                {children}
+                <div>{children}</div>
+                {description ? <div>{description}</div> : null}
             </FormItem>
         ) : (
             children

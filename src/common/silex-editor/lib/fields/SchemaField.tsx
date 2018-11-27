@@ -112,9 +112,11 @@ function SchemaFieldRender(props) {
     if (schema.type === "object") {
         displayLabel = false;
     }
+
     if (schema.type === "boolean" && !uiSchema["ui$widget"]) {
         displayLabel = true;
     }
+
     if (uiSchema["ui$field"]) {
         displayLabel = false;
     }

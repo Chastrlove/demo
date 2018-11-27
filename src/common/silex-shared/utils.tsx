@@ -197,6 +197,7 @@ export function getDefaultFormState(schemaTemp?: ICoreMetaSchema, formData?, def
   }
   const schema = retrieveSchema(schemaTemp!, definitions, formData);
   const defaults = computeDefaults(schema, schemaTemp!.default, definitions);
+
   if (typeof formData === "undefined") {
     // No form datas? Use schema defaults.
     return defaults;

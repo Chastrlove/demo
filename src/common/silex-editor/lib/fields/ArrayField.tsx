@@ -331,6 +331,7 @@ class ArrayField extends React.Component<IArrayFieldProps> {
     }
 
     public renderNormalArray() {
+
         const {
             schema,
             uiSchema,

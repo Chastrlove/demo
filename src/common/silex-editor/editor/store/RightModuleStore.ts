@@ -19,6 +19,7 @@ export class RightModuleStore {
         const { schema, uiSchema, uiDefinitions, definitions } = getCurrentWidget(
             currentParentPath,
         );
+
         let formData = {};
 
         if (schema && schema.definitions) {

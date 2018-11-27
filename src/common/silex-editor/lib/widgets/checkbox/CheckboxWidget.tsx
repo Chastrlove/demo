@@ -63,7 +63,7 @@ class CheckboxWidget extends React.Component<ICheckboxWidgetProps, any> {
                     disabled={disabled || readonly}
                     onChange={this.onChange}
                 >
-                    {description ? description : label}
+                    {label ? label : description}
                 </Checkbox>
             </div>
         );

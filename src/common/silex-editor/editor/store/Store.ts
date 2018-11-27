@@ -25,12 +25,104 @@ export class Store {
      */
     @observable
     public form: any = {
-        schema: {type: "object", properties: {}},
-        uiSchema: {},
-        formData: {},
-        uiDefinitions: {},
-        definitions: {},
-    };
+        "schema":{
+            "type":"object",
+            "properties":{
+                "string@1543290507688":{
+                    "type":"string",
+                    "title":"多选框",
+                    "definitions":{
+                        "title":{
+                            "type":"string",
+                            "title":"名称",
+                            "description":"注：最多20字",
+                            "maxLength":20
+                        },
+                        "select":{
+                            "type":"array",
+                            "title":"选项",
+                            "description":"最多50项，每项最多20字",
+                            "maxItems":50,
+                            "minItems":1,
+                            "default":[
+                                "选项1",
+                                "选项2",
+                                "选项3"
+                            ],
+                            "items":{
+                                "type":"string",
+                                "default":""
+                            }
+                        },
+                        "$ui$required":{
+                            "type":"boolean",
+                            "title":"验证",
+                            "description":"验证（如不勾选，提交表单时不校验）"
+                        },
+                        "$ui$print":{
+                            "type":"boolean",
+                            "title":"打印",
+                            "description":"参与打印（如不勾选，打印时不显示该项）"
+                        }
+                    }
+                }
+            }
+        },
+        "uiSchema":{
+            "string@1543290507688":{
+                "ui$widget":"select",
+                "ui$placeholder":"请选择",
+                "ui$readonly":true,
+                "ui$required":true,
+                "ui$print":false
+            },
+            "ui$order":[
+                "string@1543290507688"
+            ]
+        },
+        "formData":{
+            "string@1543290507688":{
+                "title":"多选框",
+                "ui$required":true,
+                "ui$print":false
+            }
+        },
+        "uiDefinitions":{
+            "string@1543290507688":{
+                "title":{
+                    "ui$widget":"text",
+                    "ui$placeholder":"请输入控件名称"
+                },
+                "select":{
+                    "ui$widget":"text",
+                    "ui$placeholder":"请输入"
+                },
+                "$ui$required":{
+                    "ui$widget":"checkbox"
+                },
+                "$ui$print":{
+                    "ui$widget":"checkbox"
+                }
+            }
+        },
+        "definitions":{
+
+        }
+    }
+
+
+
+    /**
+     * 当前提交的 form 表单
+     */
+    // @observable
+    // public form: any = {
+    //     schema: {type: "object", properties: {}},
+    //     uiSchema: {},
+    //     formData: {},
+    //     uiDefinitions: {},
+    //     definitions: {},
+    // };
 
     @observable
     public currentParentPath = {
@@ -52,6 +144,8 @@ export class Store {
 
     @action
     public setForm = () => {
+        console.log(toJS(this.form));
+
         this.form = toJS(this.form);
     };
     /**

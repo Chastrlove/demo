@@ -302,6 +302,7 @@ class ArrayField extends React.Component<IArrayFieldProps> {
     public render() {
         const { schema, uiSchema, idSchema, registry } = this.props;
         const { definitions } = registry;
+
         if (!schema.hasOwnProperty("items")) {
             return (
                 <UnsupportedField
