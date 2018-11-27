@@ -8,8 +8,12 @@ import {WidgetList} from "./leftModule/WidgetList";
 import {RightModule} from "./rightModule/RightModule";
 import {Store} from "./store/Store";
 
+export interface IEditorProps {
+    loader?: (store: Store) => {};
+}
+
 @observer
-export class Editor extends React.Component<{ loader?: (store: Store) => {} }, any> {
+export class Editor extends React.Component<IEditorProps, any> {
     public store: Store = new Store(this.props.loader);
 
     public render() {

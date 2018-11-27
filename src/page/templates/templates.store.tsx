@@ -1,7 +1,12 @@
 import {action, observable} from "mobx";
 import appStore from '../../app.store';
+import {TemplateApi} from "api";
 
 export default class TemplatesStore {
+
+    public static templateApi = new TemplateApi({
+        basePath: 'http://localhost:3000/api/v1'
+    });
 
     @observable
     public templates = [];
@@ -39,19 +44,6 @@ export default class TemplatesStore {
     };
 
     public loadTemplates = () => {
-        return Promise.resolve([
-            {
-                title: 'Ant Design Title 1',
-            },
-            {
-                title: 'Ant Design Title 2',
-            },
-            {
-                title: 'Ant Design Title 3',
-            },
-            {
-                title: 'Ant Design Title 4',
-            },
-        ])
+        return TemplatesStore.templateApi.getTemplates();
     }
 }

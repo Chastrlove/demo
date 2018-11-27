@@ -29,14 +29,14 @@ export default class ListView extends React.Component<{ store: TemplatesStore }>
             store.loadData(appStore.currentTemplate).then(store.setData);
         });
         store.loadTemplates()
-            .then(store.setTemplates)
-            .then((templates) => {
-                const template = templates[0];
-                this.changeCurrentTemplateKeys({
-                    item: template,
-                    key: template.title
-                })
-            });
+            // .then(store.setTemplates)
+            // .then((templates) => {
+            //     const template = templates[0];
+            //     this.changeCurrentTemplateKeys({
+            //         item: template,
+            //         key: template.title
+            //     })
+            // });
     }
 
     public componentWillUnmount(): void {
