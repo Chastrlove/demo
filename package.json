@@ -127,7 +127,7 @@
   },
   "proxy": {
     "/api/": {
-      "target": "http://100.84.46.218:3000",
+      "target": "http://10.12.0.53:8080",
       "changeOrigin": true,
       "secure": false
     }

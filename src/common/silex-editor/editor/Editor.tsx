@@ -7,7 +7,7 @@ import * as style from "./EditorStyle.pcss";
 import {WidgetList} from "./leftModule/WidgetList";
 import {RightModule} from "./rightModule/RightModule";
 import {Store} from "./store/Store";
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 import { toJS } from 'mobx';
 
 @observer
@@ -16,8 +16,14 @@ export class Editor extends React.Component<{ loader?: (store: Store) => {} }, a
 
     private _onSubmit = async () => {
       console.log(toJS(this.store.form));
-      const r = await this.store.addWidget(toJS(this.store.form));
-      console.log(r);
+      this.store.addWidget(toJS(this.store.form)).then((data: any) => {
+        if(data.success) {
+          message.success('Add Widget success!');
+        }
+        else {
+          message.error('Add Widget fail!');
+        }
+      });
     };
 
     public render() {
