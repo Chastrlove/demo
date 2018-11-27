@@ -94,7 +94,7 @@ export class Store {
         parentSchema: JSONSchema,
         dropIndex: number,
     ) => {
-        _.set(this.form, cuUiSchemaPath, {...currentUiSchema, ui$readonly: true});
+        _.set(this.form, cuUiSchemaPath, currentUiSchema);
         this.setUiOrder(parentSchema, parentUiSchema, paUiSchemaPath, currentKey, dropIndex);
     };
 
