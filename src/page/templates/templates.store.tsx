@@ -53,9 +53,9 @@ export default class TemplatesStore {
         return appStore.currentTemplate.uiSchema ? appStore.currentTemplate.uiSchema.ui$title : ''
     }
 
-    public loadData = (currentTemplates) => {
+    public loadData = (currentTemplate) => {
         return TemplatesStore.dataApi.getDatasByQuery({
-            id: currentTemplates.id
+            templateId: currentTemplate.id
         });
     };
 

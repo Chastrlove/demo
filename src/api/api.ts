@@ -218,6 +218,12 @@ export interface Data extends Base {
      * @memberof Data
      */
     data?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Data
+     */
+    templateId?: string;
 }
 
 /**
@@ -231,7 +237,7 @@ export interface DataQuery {
      * @type {string}
      * @memberof DataQuery
      */
-    id: string;
+    templateId?: string;
 }
 
 /**
