@@ -13,6 +13,7 @@ export default class SilexH5 extends React.PureComponent<any> {
             widgets = {},
             fields = {},
             FieldTemplate = DefaultTemplate,
+            children,
             ...other
         } = this.props;
 
@@ -22,7 +23,7 @@ export default class SilexH5 extends React.PureComponent<any> {
                 widgets={{ ...DefaultWidgets, ...widgets }}
                 fields={{ ...Fields, ...fields }}
                 FieldTemplate={FieldTemplate}
-            />
+            >{children}</Form>
         );
     }
 }

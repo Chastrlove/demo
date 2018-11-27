@@ -203,7 +203,7 @@ export default class Form extends React.Component<IFormProps, IFormState> {
           children
         ) : (
           <p>
-            <button type="submit" className="btn btn-info" onClick={this.onSubmit}>
+            <button type="submit" onClick={this.onSubmit}>
               Submit
             </button>
           </p>
