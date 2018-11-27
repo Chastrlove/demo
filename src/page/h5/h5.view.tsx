@@ -1,17 +1,24 @@
-import {observer} from 'mobx-react';
-import * as React from 'react';
-// import H5Store from "./h5.store";
+import * as React from "react";
 
-@observer
-export default class H5View extends React.Component {
-    // private store = new H5Store();
+import Form from "react-jsonschema-form";
 
-    public render() {
-        // console.log(this.store);
-        return (
-            <div>
-                H5View
-            </div>
-        );
-    }
+import widgets from "../../common/silex-h5";
+
+import samples from "../../samples/index";
+
+class H5View extends React.Component {
+  public render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <h1 className="App-title">Welcome to Silex-H5</h1>
+        </header>
+        <div className="App-Content">
+          <Form {...samples.Widgets} widgets={widgets} />
+        </div>
+      </div>
+    );
+  }
 }
+
+export default H5View;

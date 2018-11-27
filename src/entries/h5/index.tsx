@@ -1,13 +1,13 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import AppView from "../../page/h5/h5.view";
+import H5View from "../../page/h5/h5.view";
 import './index.css';
 
 import registerServiceWorker from '../../registerServiceWorker';
 
 ReactDOM.render(
-  <AppView />,
+  <H5View />,
   document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();
