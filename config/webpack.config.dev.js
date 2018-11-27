@@ -26,6 +26,41 @@ const publicUrl = '';
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
 
+const postCssConfig = {
+    sourceMap: true,
+    ident: 'postcss',
+    plugins: function() {
+        return [
+            require('postcss-flexbugs-fixes'),
+            autoprefixer({
+                browsers: [
+                    '>1%',
+                    'last 4 versions',
+                    'Firefox ESR',
+                    'not ie < 9', // React doesn't support IE8 anyway
+                ],
+                flexbox: 'no-2009',
+            }),
+            require("postcss-import"),
+            require("postcss-custom-properties"),
+            require("postcss-apply"),
+            require("precss"),
+            require("postcss-preset-env"),
+            require("postcss-plugin-px2rem")({
+                rootValue: 100,
+                unitPrecision: 5,
+                propWhiteList: [],
+                propBlackList: [],
+                selectorBlackList: [],
+                ignoreIdentifier: false,
+                replace: true,
+                mediaQuery: false,
+                minPixelValue: 0,
+            }),
+        ];
+    },
+};
+
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
 // The production configuration is different and lives in a separate file.
@@ -234,23 +269,7 @@ module.exports = {
                             },
                             {
                                 loader: require.resolve('postcss-loader'),
-                                options: {
-                                    // Necessary for external CSS imports to work
-                                    // https://github.com/facebookincubator/create-react-app/issues/2677
-                                    ident: 'postcss',
-                                    plugins: () => [
-                                        require('postcss-flexbugs-fixes'),
-                                        autoprefixer({
-                                            browsers: [
-                                                '>1%',
-                                                'last 4 versions',
-                                                'Firefox ESR',
-                                                'not ie < 9', // React doesn't support IE8 anyway
-                                            ],
-                                            flexbox: 'no-2009',
-                                        }),
-                                    ],
-                                },
+                                options: postCssConfig,
                             },
                         ],
                     },

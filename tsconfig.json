@@ -23,6 +23,9 @@
       "common/*": [
         "common/*"
       ],
+      "api": [
+        "api/api"
+      ],
       "silex-editor/*": [
         "common/silex-editor/*"
       ],

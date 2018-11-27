@@ -35,7 +35,9 @@ export default class HeaderMenu extends React.Component {
                 theme="dark"
                 mode="horizontal"
                 selectedKeys={selectedKeys}
-                className={styles.headerMenu}
+                style={{
+                    lineHeight:"0.64rem"
+                }}
                 onClick={HeaderMenu.changeMenu}
             >
                 {masterMenuData.map(this.createItem)}
