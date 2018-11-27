@@ -10,8 +10,8 @@ export default class ListView extends React.Component<{ store: TemplatesStore }>
 
     private createItem = (item, index) => {
         return (
-            <Menu.Item key={item.title}>
-                <span>{item.title}</span>
+            <Menu.Item key={item.id}>
+                <span>{item.uiSchema.ui$title}</span>
             </Menu.Item>
         )
     }
@@ -29,14 +29,14 @@ export default class ListView extends React.Component<{ store: TemplatesStore }>
             store.loadData(appStore.currentTemplate).then(store.setData);
         });
         store.loadTemplates()
-            // .then(store.setTemplates)
-            // .then((templates) => {
-            //     const template = templates[0];
-            //     this.changeCurrentTemplateKeys({
-            //         item: template,
-            //         key: template.title
-            //     })
-            // });
+            .then(store.setTemplates)
+            .then((templates) => {
+                const template = templates[0];
+                this.changeCurrentTemplateKeys({
+                    item: template,
+                    key: template.id
+                })
+            });
     }
 
     public componentWillUnmount(): void {

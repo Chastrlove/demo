@@ -4,15 +4,22 @@ import EditorStore from "./editor.store";
 import {Editor} from 'silex-editor/editor/Editor';
 import {Button, Card, message, Input} from "antd";
 import {autorun, toJS} from "mobx";
+import * as _ from 'lodash';
 
 @observer
 export default class EditorView extends React.Component {
     private editorStore = new EditorStore();
 
     private _onSubmit = async () => {
-        const {schema, uiSchema} = toJS(this.editorStore.formData);
+        const editorStore = this.editorStore;
+        const title = editorStore.title;
+        if (_.isEmpty(title)) {
+            message.warn('请输入表单名称');
+            return;
+        }
+        const {schema, uiSchema} = toJS(editorStore.formData);
         const now = Date.now();
-        this.editorStore.addWidget({
+        this.editorStore.addTemplate({
             "id": now,
             "active": true,
             "canUpdate": false,
@@ -26,17 +33,11 @@ export default class EditorView extends React.Component {
             "updateBy": "zz",
             "updateTime": now,
             schema,
-            uiSchema
+            uiSchema: _.assign(uiSchema, {
+                ui$title: title
+            })
         }).then((res: any) => {
-            if (res) {
-                if (res.errorCode < 400) {
-                    message.info(res.msg)
-                } else {
-                    message.error(res.msg)
-                }
-            } else {
-                throw new Error('sss');
-            }
+            message.info('提交成功')
         }).catch(() => {
             message.error('新增失败')
         })
@@ -44,6 +45,10 @@ export default class EditorView extends React.Component {
 
     private changeTitle = (e) => {
         this.editorStore.setTitle(e.target.value)
+    }
+
+    public componentWillMount(): void {
+        this.editorStore.setTitle(_.uniqueId('自定义表单模板_'));
     }
 
     public componentWillUnmount(): void {
@@ -54,14 +59,16 @@ export default class EditorView extends React.Component {
         const editorStore = this.editorStore;
         const title = editorStore.title;
         return (
-            <Card title={<Input style={{width:"25%"}} value={title} placeholder={'请输入名称'} onChange={this.changeTitle}/>} extra={
-                <Button
-                    type="primary"
-                    onClick={this._onSubmit}
-                >
-                    提交
-                </Button>
-            }
+            <Card
+                title={<Input style={{width: "25%"}} value={title} placeholder={'请输入名称'} onChange={this.changeTitle}/>}
+                extra={
+                    <Button
+                        type="primary"
+                        onClick={this._onSubmit}
+                    >
+                        提交
+                    </Button>
+                }
             >
                 <Editor
                     loader={(store) => {

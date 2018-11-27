@@ -40,7 +40,7 @@ export class AppStore {
     public changeMenu = (path: string[]) => this.selectedKeys = path;
 
     @observable
-    public currentTemplate = {};
+    public currentTemplate: any = {};
 
     @action
     public setCurrentTemplate = (currentTemplate = {}) => this.currentTemplate = currentTemplate;

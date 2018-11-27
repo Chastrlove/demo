@@ -1,9 +1,13 @@
 import {action, observable} from "mobx";
-import {WidgetApi} from "silex-editor/editor/api/api";
+import {WidgetApi, TemplateApi} from "api";
 
 export default class EditorStore {
 
     public static widgetApi = new WidgetApi({
+        basePath: 'http://localhost:3000/api/v1'
+    });
+
+    public static templateApi = new TemplateApi({
         basePath: 'http://localhost:3000/api/v1'
     });
 
@@ -34,4 +38,8 @@ export default class EditorStore {
         formData: {},
         uiDefinitions: {},
     }) => this.formData = formData;
+
+    public addTemplate = (template) => {
+        return EditorStore.templateApi.addTemplate(template);
+    }
 }

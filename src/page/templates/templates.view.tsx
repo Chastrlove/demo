@@ -7,6 +7,7 @@ import TemplatesStore from "./templates.store";
 import * as styles from './templates.style.pcss';
 import ListView from "./list.view";
 import DatasView from "./datas.view";
+import appStore from '../../app.store'
 
 @observer
 export default class TemplatesView extends React.Component {
@@ -32,7 +33,7 @@ export default class TemplatesView extends React.Component {
                 </Layout.Sider>
                 <Layout.Content>
                     <Card
-                        title="Card title"
+                        title={appStore.currentTemplate.uiSchema ? appStore.currentTemplate.uiSchema.ui$title : ''}
                         extra={
                             <Link to={"/web"}>
                                 <Button
