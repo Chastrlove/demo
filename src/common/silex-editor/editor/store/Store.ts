@@ -16,7 +16,7 @@ import {
 import {CenterModuleStore} from "./CenterModuleStore";
 
 const widgetApi = new WidgetApi({
-  basePath: '10.12.0.53:8080/api/v1'
+  basePath: 'http://10.12.0.53:8080/api/v1'
 });
 
 export class Store {
