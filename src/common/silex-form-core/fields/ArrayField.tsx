@@ -1,6 +1,6 @@
 import { includes } from "lodash";
 import * as React from "react";
-import { ICoreMetaSchema } from "../../../silex-shared/src/types";
+import { ICoreMetaSchema } from "silex-shared/types";
 import {
     allowAdditionalItems,
     getDefaultFormState,
@@ -12,7 +12,7 @@ import {
     optionsList,
     retrieveSchema,
     toIdSchema,
-} from "../../../silex-shared/src/utils";
+} from "silex-shared/utils";
 import AddButton from "../AddButton";
 import IconButton from "../IconButton";
 import { IArrayFieldProps } from "../types";

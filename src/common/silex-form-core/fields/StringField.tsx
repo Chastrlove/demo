@@ -1,5 +1,5 @@
 import * as React from "react";
-import { getUiOptions, getWidget, isSelect, optionsList } from "../../../silex-shared/src/utils";
+import { getUiOptions, getWidget, isSelect, optionsList } from "silex-shared/utils";
 import { IStringFieldProps } from "../types";
 
 const StringField: React.SFC<IStringFieldProps> = (props) => {

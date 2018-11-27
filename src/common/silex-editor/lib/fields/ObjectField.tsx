@@ -4,9 +4,9 @@ import {
     orderProperties,
     retrieveSchema,
     getWidget,
-} from "../../../../silex-shared/src/utils";
-import AddButton from "../../../../silex-form-core/src/AddButton";
-import { IObjectFieldProps } from "../../../../silex-form-core/src/types";
+} from "silex-shared/utils";
+import AddButton from "silex-form-core/AddButton";
+import { IObjectFieldProps } from "silex-form-core/types";
 
 function DefaultObjectFieldTemplate(props) {
     const canExpand = () => {

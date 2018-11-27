@@ -12,7 +12,7 @@ import {
 import * as style from "./CenterModuleStyle.pcss";
 import { MyForm } from "../../lib/form";
 import { Store } from "../store/Store";
-// import widgets from "../../../../silex-h5/src/widgets/index";
+// import widgets from "silex-h5/widgets/index";
 import widgets from "../../lib/mobileWidgets/index";
 import SpaceWidget from "../customWidget/SpaceWidget";
 import { JSONSchema } from "../api/api";
@@ -20,7 +20,7 @@ import { MobileFieldTemplate } from "../../lib/template/MobileFieldTemplate";
 import { getObjectFieldTemplate } from "../template/ObjectFieldTemplate";
 import { boxTarget, boxTargetSort, cardSource } from "../event/DragEvent";
 import { runInAction } from "mobx";
-import { WidgetPathBean } from "../type";
+import { WidgetPathBean } from "../Types";
 import { toJSDeep } from "../../lib/util";
 
 export const mapProps = (props) => {

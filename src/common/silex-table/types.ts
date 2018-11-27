@@ -1,5 +1,5 @@
 import * as _ from "lodash";
-import { ICoreMetaSchema, IUISchemaObject } from "../../silex-shared/src/types";
+import { ICoreMetaSchema, IUISchemaObject } from "silex-shared/types";
 import { IProperty } from "./utils";
 
 export interface IUserOptions {

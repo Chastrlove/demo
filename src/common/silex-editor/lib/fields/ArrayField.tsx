@@ -1,7 +1,7 @@
 import { includes } from "lodash";
 import { Icon, Button, Row, Col } from "antd";
 import * as React from "react";
-import { ICoreMetaSchema } from "../../../../silex-shared/src/types";
+import { ICoreMetaSchema } from "silex-shared/types";
 import {
     allowAdditionalItems,
     getDefaultFormState,
@@ -13,10 +13,10 @@ import {
     optionsList,
     retrieveSchema,
     toIdSchema,
-} from "../../../../silex-shared/src/utils";
+} from "silex-shared/utils";
 import AddButton from "./AddButton";
 import IconButton from "./IconButton";
-import { IArrayFieldProps } from "../../../../silex-form-core/src/types";
+import { IArrayFieldProps } from "silex-form-core/types";
 import UnsupportedField from "./UnsupportedField";
 
 function ArrayFieldTitle({ TitleField, idSchema, title, required }) {

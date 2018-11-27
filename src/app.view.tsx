@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Main from "./component/main/Main";
 
-class App extends React.Component {
+class AppView extends React.Component {
   public render() {
     return (
         <Main/>
@@ -9,4 +9,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default AppView;

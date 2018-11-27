@@ -1,5 +1,5 @@
 import * as React from "react";
-import { asNumber } from "../../../silex-shared/src/utils";
+import { asNumber } from "silex-shared/utils";
 import { INumberFieldProps } from "../types";
 
 const NumberField: React.SFC<INumberFieldProps> = (props) => {

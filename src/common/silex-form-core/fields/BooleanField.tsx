@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { getUiOptions, getWidget, optionsList } from "../../../silex-shared/src/utils";
+import { getUiOptions, getWidget, optionsList } from "silex-shared/utils";
 import { IBooleanFieldProps } from "../types";
 
 const BooleanField: React.SFC<IBooleanFieldProps> = (props) => {

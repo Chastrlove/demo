@@ -1,10 +1,10 @@
 import * as React from "react";
-import Fields from "silex-form-core/src/fields/index";
-import Form from "silex-form-core/src/Form";
+import Fields from "silex-form-core/fields/index";
+import Form from "silex-form-core/Form";
 import customField from "../lib/fields/index";
 import * as Template from "../lib/template/FieldTemplate";
 import { defaultWidgets } from "../lib/widgets/index";
-import { ICoreMetaSchema, IUISchemaObject } from "silex-shared/src/types";
+import { ICoreMetaSchema, IUISchemaObject } from "silex-shared/types";
 
 export interface FormProps {
     schema: ICoreMetaSchema;

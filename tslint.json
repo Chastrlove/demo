@@ -7,7 +7,6 @@
   ],
   "linterOptions": {
     "exclude": [
-      "src/common",
       "config/**/*.js",
       "node_modules/**/*.ts",
       "coverage/lcov-report/*.js"

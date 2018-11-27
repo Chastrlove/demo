@@ -4,7 +4,7 @@ import {
   IError,
   IRegisteredWidgets,
   IUISchemaObject,
-} from "../../silex-shared/src/types";
+} from "silex-shared/types";
 
 export interface IDefaultField {
   ArrayField: React.ComponentClass<IArrayFieldProps>;

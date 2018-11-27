@@ -1,10 +1,13 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "src",
     "outDir": "build/dist",
     "module": "esnext",
-    "target": "es5",
-    "lib": ["es6", "dom"],
+    "target": "es6",
+    "lib": [
+      "es6",
+      "dom"
+    ],
     "sourceMap": true,
     "allowJs": true,
     "jsx": "react",
@@ -15,7 +18,33 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "suppressImplicitAnyIndexErrors": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "common/*": [
+        "common/*"
+      ],
+      "silex-editor/*": [
+        "common/silex-editor/*"
+      ],
+      "silex-shared/*": [
+        "common/silex-shared/*"
+      ],
+      "silex-form-core/*": [
+        "common/silex-form-core/*"
+      ],
+      "silex-table/*": [
+        "common/silex-table/*"
+      ],
+      "silex-table": [
+        "common/silex-table/index"
+      ],
+      "silex-web/*": [
+        "common/silex-web/*"
+      ],
+      "silex-web": [
+        "common/silex-web/index"
+      ]
+    }
   },
   "exclude": [
     "node_modules",

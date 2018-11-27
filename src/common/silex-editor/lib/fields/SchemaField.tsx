@@ -8,8 +8,8 @@ import {
     retrieveSchema,
     toIdSchema,
     deepEquals,
-} from "../../../../silex-shared/src/utils";
-import { IFieldProps } from "../../../../silex-form-core/src/types";
+} from "silex-shared/utils";
+import { IFieldProps } from "silex-form-core/types";
 import UnsupportedField from "./UnsupportedField";
 
 const COMPONENT_TYPES = {

@@ -1,6 +1,8 @@
 import * as React from "react";
+import {observer} from "mobx-react";
 
-export class LazyLoad extends React.PureComponent<any, any> {
+@observer
+export class LazyLoad extends React.Component<any, any> {
     public Component;
 
     constructor(props) {

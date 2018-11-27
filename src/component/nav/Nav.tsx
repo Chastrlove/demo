@@ -5,11 +5,10 @@ import HeaderMenu from "../headerMenu";
 import * as styles from './NavStyle.pcss'
 
 @observer
-export class Nav extends React.PureComponent {
+export class Nav extends React.Component {
     public render() {
         return (
             <Layout.Header className={styles.nav}>
-                <div className="logo"/>
                 <HeaderMenu/>
             </Layout.Header>
         );

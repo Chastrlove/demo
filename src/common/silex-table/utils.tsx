@@ -2,8 +2,8 @@ import { Checkbox } from "antd";
 import { ColumnProps } from "antd/es/table";
 import * as _ from "lodash";
 import * as React from "react";
-import { ICoreMetaSchema } from "../../silex-shared/src/types";
-import { getSchemaType } from "../../silex-shared/src/utils";
+import { ICoreMetaSchema } from "silex-shared/types";
+import { getSchemaType } from "silex-shared/utils";
 
 export interface IProperty extends ICoreMetaSchema {
     dataIndex: string;

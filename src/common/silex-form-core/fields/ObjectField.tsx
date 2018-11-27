@@ -1,5 +1,5 @@
 import * as React from "react";
-import { getUiOptions, orderProperties, retrieveSchema } from "../../../silex-shared/src/utils";
+import { getUiOptions, orderProperties, retrieveSchema } from "silex-shared/utils";
 import AddButton from "../AddButton";
 import { IObjectFieldProps } from "../types";
 

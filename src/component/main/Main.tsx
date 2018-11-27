@@ -7,7 +7,7 @@ import * as styles from "./MainStyle.pcss";
 import appStore from '../../app.store';
 
 @observer
-export default class Main extends React.PureComponent<{}> {
+export default class Main extends React.Component<{}> {
     private renderRoute = (render) => {
         return (props) => {
             return render(props);

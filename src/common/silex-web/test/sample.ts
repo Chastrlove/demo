@@ -144,7 +144,7 @@
 //         date: "2018-10-18T04:14:47.877Z",
 //     },
 // };
-import { ICoreMetaSchema } from "../../../silex-shared/src/types";
+import { ICoreMetaSchema } from "silex-shared/types";
 
 export const sample: { schema: ICoreMetaSchema; uiSchema: any; formData: any } = {
     schema: {

@@ -5,7 +5,7 @@ import * as _ from "lodash";
 import * as React from "react";
 import { DragDropContext, DragSource, DropTarget } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
-// import { getWidget } from "../../../../silex-shared/src/utils";
+// import { getWidget } from "silex-shared/utils";
 import { actions, connect } from "../../store";
 import { IState } from "../../types";
 import { IProperty } from "../../utils";

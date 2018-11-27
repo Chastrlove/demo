@@ -13,7 +13,7 @@ import {
 import * as style from "./CenterModuleStyle.pcss";
 import { MyForm } from "../../lib/form";
 import { Store } from "../store/Store";
-// import widgets from "../../../../silex-h5/src/widgets/index";
+// import widgets from "silex-h5/widgets/index";
 import widgets from "../../lib/mobileWidgets/index";
 import SpaceWidget from "../customWidget/SpaceWidget";
 import { JSONSchema } from "../api/api";

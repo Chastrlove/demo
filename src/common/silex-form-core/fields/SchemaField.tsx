@@ -8,7 +8,7 @@ import {
   mergeObjects,
   retrieveSchema,
   toIdSchema,
-} from "../../../silex-shared/src/utils";
+} from "silex-shared/utils";
 import { IFieldProps } from "../types";
 import UnsupportedField from "./UnsupportedField";
 

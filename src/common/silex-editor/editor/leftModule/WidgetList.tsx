@@ -5,7 +5,7 @@ import { TextWidget } from "../customWidget/TextWidget";
 import { Store } from "../store/Store";
 import { Entire } from "../api/api";
 import * as style from "./WidgetListStyle.pcss";
-import { DragBoxBean } from "../type";
+import { DragBoxBean } from "../Types";
 
 @observer
 export class WidgetList extends React.Component<{ store: Store }, any> {

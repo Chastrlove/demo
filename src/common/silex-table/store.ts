@@ -1,6 +1,6 @@
 import * as _ from "lodash";
-import createStore from "../../silex-shared/src/react-waterfall";
-import { IConfig } from "../../silex-shared/src/react-waterfall/types";
+import createStore from "silex-shared/react-waterfall";
+import { IConfig } from "silex-shared/react-waterfall/types";
 import { IState } from "./types";
 
 const config: IConfig<

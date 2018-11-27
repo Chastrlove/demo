@@ -7,13 +7,12 @@ import {RightModuleStore} from "./RightModuleStore";
 import {toJSDeep} from "../../lib/util";
 import {
     DragBoxBean,
-    EditFormBean,
     EditFormBeanType,
     SPLIT_PATH,
     UISCHEMA_PROPS_FRONT,
     WidgetPathAndObjectBean,
     WidgetPathBean,
-} from "../type";
+} from "../Types";
 import {CenterModuleStore} from "./CenterModuleStore";
 
 export class Store {
@@ -25,7 +24,7 @@ export class Store {
      * 当前提交的 form 表单
      */
     @observable
-    public form: EditFormBean = {
+    public form: any = {
         schema: {type: "object", properties: {}},
         uiSchema: {},
         formData: {},

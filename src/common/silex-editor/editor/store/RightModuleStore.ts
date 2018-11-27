@@ -1,6 +1,6 @@
 import * as _ from "lodash";
 import { Store } from "./Store";
-import { UISCHEMA_PROPS_FRONT, UISCHEMA_FRONT } from "../type";
+import { UISCHEMA_PROPS_FRONT, UISCHEMA_FRONT } from "../Types";
 
 export class RightModuleStore {
     public store: Store;

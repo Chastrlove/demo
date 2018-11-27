@@ -12,6 +12,9 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const _ = require('lodash');
+const tsConfig = require("../tsconfig");
+const src = path.join(__dirname, "src");
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -42,7 +45,7 @@ module.exports = {
         // of CSS changes), or refresh the page (in case of JS changes). When you
         // make a syntax error, this client will display a syntax error overlay.
         // Note: instead of the default WebpackDevServer client, we use a custom one
-        // to bring better experience for Create React App users. You can replace
+        // to bring better experience for Create React AppView users. You can replace
         // the line below with these two lines if you prefer the stock client:
         // require.resolve('webpack-dev-server/client') + '?/',
         // require.resolve('webpack/hot/dev-server'),
@@ -95,12 +98,19 @@ module.exports = {
             '.web.jsx',
             '.jsx',
         ],
-        alias: {
-
-            // Support React Native Web
-            // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-            'react-native': 'react-native-web',
-        },
+        alias: tsConfig.compilerOptions.paths
+            ? _.chain(tsConfig.compilerOptions.paths)
+                .mapKeys(function (value, key) {
+                    return _.replace(key, "/*", "");
+                })
+                .mapValues(function (value) {
+                    return path.join(src, _.replace(value, "/*", "/"));
+                })
+                .assign({
+                    'react-native': 'react-native-web'
+                })
+                .value()
+            : {},
         plugins: [
             // Prevents users from importing files from outside of src/ (or node_modules/).
             // This often causes confusion because we only process files within src/ with babel.
@@ -160,13 +170,15 @@ module.exports = {
                                 options: {
                                     // disable type checker - we will use it in fork plugin
                                     transpileOnly: true,
-                                    getCustomTransformers: () => ({
-                                        before: [require('ts-import-plugin')({
-                                            libraryDirectory: 'es',
-                                            libraryName: 'antd',
-                                            style: 'css',
-                                        })]
-                                    })
+                                    // getCustomTransformers: () => ({
+                                    //     before: [require('ts-import-plugin')([{
+                                    //         libraryDirectory: 'es',
+                                    //         libraryName: 'antd',
+                                    //         style: 'css',
+                                    //     }, {
+                                    //         libraryName: 'antd-mobile', style: 'css'
+                                    //     }])]
+                                    // })
                                 },
                             },
                         ],
@@ -176,6 +188,40 @@ module.exports = {
                     // "style" loader turns CSS into JS modules that inject <style> tags.
                     // In production, we use a plugin to extract that CSS to a file, but
                     // in development "style" loader enables hot editing of CSS.
+                    {
+                        test: /\.pcss$/,
+                        use: [
+                            require.resolve('style-loader'),
+                            {
+                                loader: require.resolve('css-loader'),
+                                options: {
+                                    modules: true,
+                                    importLoaders: 2,
+                                    localIdentName: "[name]__[local]___[hash:base64:5]",
+                                },
+                            },
+                            {
+                                loader: require.resolve('postcss-loader'),
+                                options: {
+                                    // Necessary for external CSS imports to work
+                                    // https://github.com/facebookincubator/create-react-app/issues/2677
+                                    ident: 'postcss',
+                                    plugins: () => [
+                                        require('postcss-flexbugs-fixes'),
+                                        autoprefixer({
+                                            browsers: [
+                                                '>1%',
+                                                'last 4 versions',
+                                                'Firefox ESR',
+                                                'not ie < 9', // React doesn't support IE8 anyway
+                                            ],
+                                            flexbox: 'no-2009',
+                                        }),
+                                    ],
+                                },
+                            },
+                        ],
+                    },
                     {
                         test: /\.css$/,
                         use: [

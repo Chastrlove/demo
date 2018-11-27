@@ -7,8 +7,8 @@ import {
   setState,
   shouldRender,
   toIdSchema,
-} from "../../silex-shared/src/utils";
-import validateFormData, { toErrorList } from "../../silex-shared/src/validate";
+} from "silex-shared/utils";
+import validateFormData, { toErrorList } from "silex-shared/validate";
 import { default as DefaultErrorList } from "./ErrorList";
 import { IFormProps, IFormState } from "./types";
 

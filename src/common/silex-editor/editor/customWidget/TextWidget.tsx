@@ -5,7 +5,7 @@ import * as classNames from "classnames";
 import * as style from "./TextWidgetStyle.pcss";
 import { Entire } from "../api/api";
 import { ConnectDragSource, DragSource, DragSourceConnector, DragSourceMonitor } from "react-dnd";
-import { DragBoxBean } from "../type";
+import { DragBoxBean } from "../Types";
 import { Store } from "../store/Store";
 
 export interface TextWidgetBean {

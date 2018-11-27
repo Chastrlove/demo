@@ -14,7 +14,7 @@ import {
   WidgetType,
 } from "./types";
 import validateFormData from "./validate";
-import { ID_PLACEHOLDER } from "../../silex-form-core/src/const";
+import { ID_PLACEHOLDER } from "silex-form-core/const";
 
 export const deepEquals = reactFastCompare;
 
