@@ -7,7 +7,6 @@ import {autorun, runInAction, toJS} from "mobx";
 import * as _ from 'lodash';
 import mock from "../../mock/mock";
 import appStore from 'entries/index/app.store'
-import {app} from "../h5/h5.style.pcss";
 
 @observer
 export default class EditorView extends React.Component {
@@ -38,6 +37,12 @@ export default class EditorView extends React.Component {
                         ui$title: title
                     })
                 }
+            }).then((res: any) => {
+                this.editorStore.setLoading();
+                message.info('提交成功')
+            }).catch(() => {
+                this.editorStore.setLoading();
+                message.error('提交失败')
             })
         } else {
             this.editorStore.addTemplate({
