@@ -2076,14 +2076,14 @@ export const WidgetApiFp = function(configuration?: Configuration) {
             );
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(
-                    (response) => {
-                        if (response.status >= 200 && response.status < 300) {
-                            return response.json();
-                        } else {
-                            throw response;
-                        }
-                    },
-                );
+                (response) => {
+                  if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                  } else {
+                    throw response;
+                  }
+                },
+              );
             };
         },
         /**

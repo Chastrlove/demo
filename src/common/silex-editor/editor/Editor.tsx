@@ -7,10 +7,18 @@ import * as style from "./EditorStyle.pcss";
 import {WidgetList} from "./leftModule/WidgetList";
 import {RightModule} from "./rightModule/RightModule";
 import {Store} from "./store/Store";
+import { Button } from 'antd';
+import { toJS } from 'mobx';
 
 @observer
 export class Editor extends React.Component<{ loader?: (store: Store) => {} }, any> {
     public store: Store = new Store(this.props.loader);
+
+    private _onSubmit = async () => {
+      console.log(toJS(this.store.form));
+      const r = await this.store.addWidget(toJS(this.store.form));
+      console.log(r);
+    };
 
     public render() {
         return (
@@ -19,6 +27,14 @@ export class Editor extends React.Component<{ loader?: (store: Store) => {} }, a
                     <WidgetList store={this.store}/>
                     <div className={style.centerModuleContainer}>
                         <CenterModule id={"root_$_"} store={this.store}/>
+                      <Button
+                        type="primary"
+                        size={`large`}
+                        style={{position: 'absolute', top: 20, right: -100}}
+                        onClick={this._onSubmit}
+                      >
+                        提交
+                      </Button>
                     </div>
                 </DragDropContextProvider>
                 <RightModule store={this.store}/>

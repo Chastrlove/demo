@@ -1,6 +1,6 @@
 import * as _ from "lodash";
 import {action, observable, toJS} from "mobx";
-import {JSONSchema, UISchema} from "../api/api";
+import {JSONSchema, UISchema, WidgetApi} from "../api/api";
 import {LeftModuleStore} from "./LeftModuleStore";
 import {RightModuleStore} from "./RightModuleStore";
 
@@ -14,6 +14,10 @@ import {
     WidgetPathBean,
 } from "../Types";
 import {CenterModuleStore} from "./CenterModuleStore";
+
+const widgetApi = new WidgetApi({
+  basePath: '10.12.0.53:8080/api/v1'
+});
 
 export class Store {
     public leftModule: LeftModuleStore;
@@ -49,6 +53,11 @@ export class Store {
             loader(this);
         }
     }
+
+    @action
+    public addWidget = (data) =>  {
+      return widgetApi.addWidget(data);
+    };
 
     @action
     public setForm = () => {
