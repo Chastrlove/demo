@@ -2,13 +2,13 @@ import {observer} from 'mobx-react';
 import * as React from 'react';
 import {Modal} from 'antd';
 import TemplatesStore from "./templates.store";
-import {MyForm} from 'silex-web/lib/form';
 import appStore from 'entries/index/app.store';
+import SilexH5 from "silex-h5";
 
 @observer
-export default class FormView extends React.Component<{ store: TemplatesStore }> {
+export default class H5View extends React.Component<{ store: TemplatesStore }> {
     private onCancel = () => {
-        this.props.store.setShowForm();
+        this.props.store.setShowH5Form();
     }
     private onOk = () => {
         this.onCancel();
@@ -19,7 +19,7 @@ export default class FormView extends React.Component<{ store: TemplatesStore }>
         return (
             <Modal
                 width={600}
-                visible={store.showForm}
+                visible={store.showH5Form}
                 onCancel={this.onCancel}
                 onOk={this.onOk}
             >
@@ -36,7 +36,7 @@ class TempForm extends React.Component<{ store: TemplatesStore }> {
         const currentTemplate = appStore.currentTemplate;
         const {schema, uiSchema} = currentTemplate;
         return (
-            currentTemplate.schema ? <MyForm schema={schema} uiSchema={uiSchema} formData={currentData}/> : null
+            currentTemplate.schema ? <SilexH5 schema={schema} uiSchema={uiSchema} formData={currentData}/> : null
         );
     }
 }

@@ -46,6 +46,12 @@
       ],
       "silex-web": [
         "common/silex-web/index"
+      ],
+      "silex-h5/*": [
+        "common/silex-h5/*"
+      ],
+      "silex-h5": [
+        "common/silex-h5/index"
       ]
     }
   },

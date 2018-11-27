@@ -11,10 +11,10 @@ export const routes: IRoute[] = [
         path: "/editor",
         render: (props) => <LazyLoad {...props} component={import("../../page/editor")}/>,
     },
-    {
-        path: "/h5",
-        render: (props) => <LazyLoad {...props} component={import("../../page/h5")}/>,
-    },
+    // {
+    //     path: "/h5",
+    //     render: (props) => <LazyLoad {...props} component={import("../../page/h5")}/>,
+    // },
     {
         path: "/templates",
         render: (props) => <LazyLoad {...props} component={import("../../page/templates")}/>,

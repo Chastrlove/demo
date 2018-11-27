@@ -1,13 +1,14 @@
 import {observer} from 'mobx-react';
 import * as React from 'react';
 import {Location} from "history";
-import {Layout, Button, Icon, Card} from 'antd';
+import {Layout, Button, Icon, Card, Row, Col} from 'antd';
 import {Link} from "react-router-dom";
 import TemplatesStore from "./templates.store";
 import * as styles from './templates.style.pcss';
 import ListView from "./list.view";
 import DatasView from "./datas.view";
 import FormView from "./form.view";
+import H5View from "./h5.view";
 
 @observer
 export default class TemplatesView extends React.Component {
@@ -15,6 +16,10 @@ export default class TemplatesView extends React.Component {
 
     private showForm = () => {
         this.store.setShowForm();
+    }
+
+    private showH5Form = () => {
+        this.store.setShowH5Form();
     }
 
     public render() {
@@ -39,14 +44,28 @@ export default class TemplatesView extends React.Component {
                     <Card
                         title={store.title}
                         extra={
-                            <Button
-                                type="primary"
-                                style={{width: "100%"}}
-                                htmlType={"button"}
-                                onClick={this.showForm}
-                            >
-                                <Icon type="plus"/> 新增表单
-                            </Button>
+                            <Row gutter={24}>
+                                <Col className="gutter-row" span={12}>
+                                    <Button
+                                        type="primary"
+                                        style={{width: "100%"}}
+                                        htmlType={"button"}
+                                        onClick={this.showForm}
+                                    >
+                                        <Icon type="plus"/> 新增表单
+                                    </Button>
+                                </Col>
+                                <Col className="gutter-row" span={12}>
+                                    <Button
+                                        type="primary"
+                                        style={{width: "100%"}}
+                                        htmlType={"button"}
+                                        onClick={this.showH5Form}
+                                    >
+                                        <Icon type="plus"/> 新增H5
+                                    </Button>
+                                </Col>
+                            </Row>
                         }
                     >
                         <DatasView store={store}/>
@@ -54,6 +73,7 @@ export default class TemplatesView extends React.Component {
 
                 </Layout.Content>
                 <FormView store={store}/>
+                <H5View store={store}/>
             </Layout>
         );
     }

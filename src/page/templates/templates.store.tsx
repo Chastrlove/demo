@@ -39,6 +39,11 @@ export default class TemplatesStore {
     public setShowForm = (showForm = !this.showForm) => this.showForm = showForm;
 
     @observable
+    public showH5Form = false;
+    @action
+    public setShowH5Form = (showH5Form = !this.showH5Form) => this.showH5Form = showH5Form;
+
+    @observable
     public currentData = {};
     @action
     public setCurrentData = (currentData = {}) => this.currentData = currentData;
