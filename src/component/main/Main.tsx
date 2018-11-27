@@ -33,7 +33,7 @@ export default class Main extends React.Component<{}> {
                     <Layout.Content>
                         <Switch>
                             {appStore.routes.map(this.createRoute)}
-                            <Redirect exact={true} strict={true} from="/" to="/widget" />
+                            <Redirect exact={true} strict={true} from="/" to="/templates" />
                             <Redirect to={"/error"} />
                         </Switch>
                     </Layout.Content>
