@@ -223,6 +223,20 @@ export interface Data extends Base {
 /**
  * 
  * @export
+ * @interface DataQuery
+ */
+export interface DataQuery {
+    /**
+     * 
+     * @type {string}
+     * @memberof DataQuery
+     */
+    id: string;
+}
+
+/**
+ * 
+ * @export
  * @interface Entire
  */
 export interface Entire extends BaseWidget {
@@ -875,6 +889,38 @@ export const DataApiFetchParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
+         * @summary getDatasByQuery
+         * @param {DataQuery} [dataQuery] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDatasByQuery(dataQuery?: DataQuery, options: any = {}): FetchArgs {
+            const localVarPath = `/data/list/query`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, baseOptions, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"DataQuery" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(dataQuery || {}) : (dataQuery || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary updateData
          * @param {Data} [data] 
          * @param {*} [options] Override http request option.
@@ -972,6 +1018,25 @@ export const DataApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary getDatasByQuery
+         * @param {DataQuery} [dataQuery] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDatasByQuery(dataQuery?: DataQuery, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Data>> {
+            const localVarFetchArgs = DataApiFetchParamCreator(configuration).getDatasByQuery(dataQuery, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
          * @summary updateData
          * @param {Data} [data] 
          * @param {*} [options] Override http request option.
@@ -1029,6 +1094,16 @@ export const DataApiFactory = function (configuration?: Configuration, fetch?: F
         },
         /**
          * 
+         * @summary getDatasByQuery
+         * @param {DataQuery} [dataQuery] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDatasByQuery(dataQuery?: DataQuery, options?: any) {
+            return DataApiFp(configuration).getDatasByQuery(dataQuery, options)(fetch, basePath);
+        },
+        /**
+         * 
          * @summary updateData
          * @param {Data} [data] 
          * @param {*} [options] Override http request option.
@@ -1080,6 +1155,18 @@ export class DataApi extends BaseAPI {
      */
     public getDatas(options?: any) {
         return DataApiFp(this.configuration).getDatas(options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary getDatasByQuery
+     * @param {DataQuery} [dataQuery] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DataApi
+     */
+    public getDatasByQuery(dataQuery?: DataQuery, options?: any) {
+        return DataApiFp(this.configuration).getDatasByQuery(dataQuery, options)(this.fetch, this.basePath);
     }
 
     /**

@@ -16,8 +16,14 @@ export default class ListView extends React.Component<{ store: TemplatesStore }>
         )
     }
 
-    private changeCurrentTemplateKeys = (data) => {
-        this.props.store.changeCurrentTemplateKeys(data);
+    private changeCurrentTemplateKeys = (data, dd = {}) => {
+        const store = this.props.store;
+        const key = data.key;
+        const item = store.templates.find((temps) => temps.id === key);
+        store.changeCurrentTemplateKeys({
+            item,
+            key
+        });
     }
 
     private readonly disposer;
@@ -32,7 +38,7 @@ export default class ListView extends React.Component<{ store: TemplatesStore }>
             .then(store.setTemplates)
             .then((templates) => {
                 const template = templates[0];
-                this.changeCurrentTemplateKeys({
+                store.changeCurrentTemplateKeys({
                     item: template,
                     key: template.id
                 })

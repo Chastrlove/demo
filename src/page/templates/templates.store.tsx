@@ -1,10 +1,14 @@
-import {action, observable} from "mobx";
+import {action, computed, observable} from "mobx";
 import appStore from '../../app.store';
-import {TemplateApi} from "api";
+import {TemplateApi, DataApi} from "api";
 
 export default class TemplatesStore {
 
     public static templateApi = new TemplateApi({
+        basePath: 'http://localhost:3000/api/v1'
+    });
+
+    public static dataApi = new DataApi({
         basePath: 'http://localhost:3000/api/v1'
     });
 
@@ -29,18 +33,15 @@ export default class TemplatesStore {
         appStore.setCurrentTemplate(item);
     }
 
+    @computed
+    public get title() {
+        return appStore.currentTemplate.uiSchema ? appStore.currentTemplate.uiSchema.ui$title : ''
+    }
+
     public loadData = (currentTemplates) => {
-        console.log(currentTemplates);
-        const data = [];
-        for (let i = 0; i < 46; i++) {
-            data.push({
-                key: i,
-                name: `Edward King ${i}`,
-                age: 32,
-                address: `London, Park Lane no. ${i}`,
-            });
-        }
-        return Promise.resolve(data);
+        return TemplatesStore.dataApi.getDatasByQuery({
+            id: currentTemplates.id
+        });
     };
 
     public loadTemplates = () => {
