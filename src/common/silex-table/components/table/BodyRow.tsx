@@ -15,6 +15,7 @@ function dragDirection(
     if (dragIndex > hoverIndex && hoverClientY < hoverMiddleY) {
         return "upward";
     }
+    return undefined;
 }
 
 export class BodyRow extends React.Component<any> {
