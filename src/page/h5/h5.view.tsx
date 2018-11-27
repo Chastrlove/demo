@@ -1,8 +1,6 @@
 import * as React from "react";
 
-import Form from "react-jsonschema-form";
-
-import widgets from "../../common/silex-h5";
+import SilexH5 from "../../common/silex-h5";
 
 import samples from "../../samples/index";
 
@@ -16,7 +14,7 @@ class H5View extends React.Component {
           <h1 className={styles.appTitle}>Welcome to Silex-H5</h1>
         </header>
         <div className={styles.appContent}>
-          <Form {...samples.Widgets} widgets={widgets} />
+          <SilexH5 {...samples.Widgets}/>
         </div>
       </div>
     );
