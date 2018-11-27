@@ -33,6 +33,16 @@ export default class TemplatesStore {
         appStore.setCurrentTemplate(item);
     }
 
+    @observable
+    public showForm = false;
+    @action
+    public setShowForm = (showForm = !this.showForm) => this.showForm = showForm;
+
+    @observable
+    public currentData = {};
+    @action
+    public setCurrentData = (currentData = {}) => this.currentData = currentData;
+
     @computed
     public get title() {
         return appStore.currentTemplate.uiSchema ? appStore.currentTemplate.uiSchema.ui$title : ''
