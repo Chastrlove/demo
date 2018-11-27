@@ -38,13 +38,20 @@ function getServedPath(appPackageJson) {
   return ensureSlash(servedUrl, true);
 }
 
+
+const globby = require('globby');
+
+const htmlArray = globby.sync([path.join(resolveApp('public'), '*.html')]);
+
 // config after eject: we're in ./config/
 module.exports = {
   dotenv: resolveApp('.env'),
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
-  appIndexJs: resolveApp('src/index.tsx'),
+  htmlArray,
+  appIndexJs: resolveApp('src/entries/index/index.tsx'),
+  // appH5Js: resolveApp('src/entries/h5/index.tsx'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
   yarnLockFile: resolveApp('yarn.lock'),

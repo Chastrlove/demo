@@ -141,9 +141,14 @@ function build(previousFileSizes) {
   });
 }
 
-function copyPublicFolder() {
-  fs.copySync(paths.appPublic, paths.appBuild, {
-    dereference: true,
-    filter: file => file !== paths.appHtml,
-  });
-}
+const cpy = require('cpy');
+
+// function copyPublicFolder () 替换
+// 原来的方法是复制public下所有的内容，因为增加了多html 所以不再直接复制过去(直接复制会覆盖html)
+const copyPublicFolder = async() => {
+    await cpy([`${paths.appPublic}/*.*`, `!${paths.appPublic}/*.html`], paths.appBuild);
+// fs.copySync(paths.appPublic, paths.appBuild, {
+//  dereference: true,
+//  filter: file => file !== paths.appHtml,
+// });
+};

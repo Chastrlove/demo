@@ -3,7 +3,7 @@ import * as React from "react";
 import {observer} from "mobx-react";
 import {Link} from "react-router-dom";
 import * as styles from "./HeaderMenuStyle.pcss";
-import appStore from "../../app.store";
+import appStore from "../../entries/index/app.store";
 
 export interface IItem {
     id: string;

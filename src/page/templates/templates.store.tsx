@@ -1,5 +1,5 @@
 import {action, computed, observable} from "mobx";
-import appStore from '../../app.store';
+import appStore from 'entries/index/app.store';
 import {TemplateApi, DataApi} from "api";
 
 export default class TemplatesStore {

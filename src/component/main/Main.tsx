@@ -4,7 +4,7 @@ import {observer} from "mobx-react";
 import { HashRouter, Switch, Redirect, Route } from "react-router-dom";
 import Nav from "../nav";
 import * as styles from "./MainStyle.pcss";
-import appStore from '../../app.store';
+import appStore from '../../entries/index/app.store';
 
 @observer
 export default class Main extends React.Component<{}> {

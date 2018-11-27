@@ -3,7 +3,7 @@ import * as React from 'react';
 import {Menu} from 'antd';
 import TemplatesStore from "./templates.store";
 import {autorun} from "mobx";
-import appStore from 'app.store';
+import appStore from 'entries/index/app.store';
 
 @observer
 export default class ListView extends React.Component<{ store: TemplatesStore }> {

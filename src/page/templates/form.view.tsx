@@ -3,7 +3,7 @@ import * as React from 'react';
 import {Modal} from 'antd';
 import TemplatesStore from "./templates.store";
 import {MyForm} from 'silex-web/lib/form';
-import appStore from '../../app.store';
+import appStore from 'entries/index/app.store';
 
 @observer
 export default class FormView extends React.Component<{ store: TemplatesStore }> {
