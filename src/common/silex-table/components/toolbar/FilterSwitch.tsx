@@ -1,6 +1,7 @@
 import { Form, Icon, Radio } from "antd";
 import * as React from "react";
-import { actions, connect } from "../../store";
+import { actions, Consumer } from "../../store";
+import { IState } from "silex-table/types";
 
 export interface IFilterSwitchProps {
     search: "search" | "unSearch";
@@ -23,8 +24,15 @@ class FilterSwitch extends React.PureComponent<IFilterSwitchProps> {
     }
     private onChange = (e) => {
         actions.changeSearch(e.target.value);
-        console.log("onChange");
     };
 }
 
-export default connect<any>(({ search }) => ({ search }))(FilterSwitch);
+export default () => {
+    return (
+        <Consumer select={[(state: IState) => state.search]}>
+            {(search: "search" | "unSearch") => {
+                return <FilterSwitch search={search} />;
+            }}
+        </Consumer>
+    );
+};

@@ -1,8 +1,9 @@
 import { Button, Checkbox, Form, Popover } from "antd";
 import * as _ from "lodash";
 import * as React from "react";
-import { actions, connect } from "../../store";
+import { actions, Consumer } from "../../store";
 import { IProperty } from "../../utils";
+import { IState } from "silex-table/types";
 
 export interface IColumnsSelectorProps {
     properties: _.LoDashExplicitWrapper<_.Dictionary<IProperty>>;
@@ -55,7 +56,17 @@ class ColumnsSelector extends React.PureComponent<IColumnsSelectorProps> {
     };
 }
 
-export default connect<any>(({ properties, uiSchema }) => ({
-    properties,
-    ui$order: _.chain(uiSchema.ui$order),
-}))(ColumnsSelector);
+export default () => {
+    return (
+        <Consumer
+            select={[
+                (state: IState) => state.properties,
+                (state: IState) => _.chain(state.uiSchema.ui$order),
+            ]}
+        >
+            {(properties: any, ui$order: any) => (
+                <ColumnsSelector properties={properties} ui$order={ui$order} />
+            )}
+        </Consumer>
+    );
+};

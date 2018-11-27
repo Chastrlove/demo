@@ -2,19 +2,20 @@ import { Card } from "antd";
 import * as React from "react";
 import CustomTable from "./components/table";
 import ToolBar from "./components/toolbar";
-import Actions from "./components/toolbar/Actions";
 import { Provider } from "./store";
+import { ISchemaTableProps, IState } from "silex-table/types";
 
-class Example extends React.PureComponent {
+class SilexTable<T extends IState = any> extends React.PureComponent<ISchemaTableProps<T>> {
     public render() {
+        const { actions, initialState, getTableProps } = this.props;
         return (
-            <Provider>
-                <Card title={<Actions />} extra={<ToolBar />}>
-                    <CustomTable />
+            <Provider initialState={initialState}>
+                <Card bodyStyle={{overflow:"auto"}} title={actions} extra={<ToolBar />}>
+                    <CustomTable getTableProps={getTableProps} />
                 </Card>
             </Provider>
         );
     }
 }
 
-export default Example;
+export default SilexTable;

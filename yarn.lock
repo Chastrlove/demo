@@ -2235,7 +2235,7 @@ create-react-class@^15.5.2, create-react-class@^15.5.3, create-react-class@^15.6
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
 
-create-react-context@0.2.3:
+create-react-context@0.2.3, create-react-context@^0.2.2:
   version "0.2.3"
   resolved "http://registry.npm.taobao.org/create-react-context/download/create-react-context-0.2.3.tgz#9ec140a6914a22ef04b8b09b7771de89567cb6f3"
   integrity sha1-nsFAppFKIu8EuLCbd3HeiVZ8tvM=
@@ -4096,6 +4096,18 @@ ignore-walk@^3.0.1:
   dependencies:
     minimatch "^3.0.4"
 
+immer@^1.2.1:
+  version "1.8.0"
+  resolved "http://registry.npm.taobao.org/immer/download/immer-1.8.0.tgz#afa8393996a1f3f5255019e7d10c29d42dd95225"
+  integrity sha1-r6g5OZah8/UlUBnn0Qwp1C3ZUiU=
+
+immutability-helper@^2.8.1:
+  version "2.8.1"
+  resolved "http://registry.npm.taobao.org/immutability-helper/download/immutability-helper-2.8.1.tgz#3c5ec05fcd83676bfae7146f319595243ad904f4"
+  integrity sha1-PF7AX82DZ2v65xRvMZWVJDrZBPQ=
+  dependencies:
+    invariant "^2.2.0"
+
 immutable@^3.7.4:
   version "3.8.2"
   resolved "http://registry.npm.taobao.org/immutable/download/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"
@@ -4201,7 +4213,7 @@ intersperse@^1.0.0:
   resolved "http://registry.npm.taobao.org/intersperse/download/intersperse-1.0.0.tgz#f2561fb1cfef9f5277cc3347a22886b4351a5181"
   integrity sha1-8lYfsc/vn1J3zDNHoiiGtDUaUYE=
 
-invariant@^2.1.0, invariant@^2.2.1, invariant@^2.2.2, invariant@^2.2.4:
+invariant@^2.1.0, invariant@^2.2.0, invariant@^2.2.1, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
@@ -7900,6 +7912,16 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
+
+react-copy-write@^0.8.0:
+  version "0.8.0"
+  resolved "http://registry.npm.taobao.org/react-copy-write/download/react-copy-write-0.8.0.tgz#a54fb2bd52f26b8cedaf8783ef3f7297fdd9723f"
+  integrity sha1-pU+yvVLya4ztr4eD7z9yl/3Zcj8=
+  dependencies:
+    create-react-context "^0.2.2"
+    fbjs "^0.8.16"
+    immer "^1.2.1"
+    invariant "^2.2.4"
 
 react-dev-utils@^5.0.2:
   version "5.0.3"

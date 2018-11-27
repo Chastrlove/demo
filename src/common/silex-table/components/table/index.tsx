@@ -1,18 +1,23 @@
-import { Input, Table } from "antd";
+import { Table } from "antd";
 import { ColumnProps } from "antd/es/table";
 import update from "immutability-helper";
 import * as _ from "lodash";
 import * as React from "react";
 import { DragDropContext, DragSource, DropTarget } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
-// import { getWidget } from "silex-shared/utils";
-import { actions, connect } from "../../store";
+import SearchForm from "silex-form-core/SearchForm";
+import Fields from "silex-form-core/fields";
+import { defaultWidgets } from "silex-web/lib/widgets";
+import { actions, Consumer } from "../../store";
 import { IState } from "../../types";
 import { IProperty } from "../../utils";
-// import widgets from "../../widgets";
 import { BodyRow } from "./BodyRow";
 
-export class CustTable extends React.PureComponent<IState, any> {
+export interface ICustTableProps extends IState {
+    getTableProps?: any;
+}
+
+export class CustTable extends React.PureComponent<ICustTableProps, any> {
     private static rowSource = {
         beginDrag(props) {
             return {
@@ -54,6 +59,7 @@ export class CustTable extends React.PureComponent<IState, any> {
             initialClientOffset: monitor.getInitialClientOffset(),
         }))(BodyRow),
     );
+
     private static getColumns<T = any>(
         properties: _.LoDashExplicitWrapper<_.Dictionary<IProperty>>,
         ui$order: _.LoDashExplicitWrapper<string[]>,
@@ -82,23 +88,33 @@ export class CustTable extends React.PureComponent<IState, any> {
             })
             .compact();
     }
+
     private readonly headerRow = {
         search: (properties, props?) => {
             return (
                 <>
                     <tr key={0}>{props.children}</tr>
                     <tr key={1}>
-                        {props.children.map((prop) => {
-                            const key = prop.key;
-                            const property = properties[key];
-                            // const Widget = getWidget(property, "", widgets);
-                            return (
-                                <th style={{ background: "inherit" }} key={key}>
-                                    {/*<Widget schema={property} />*/}
-                                    <Input placeholder={`请输入 ${property.title || ""}`} />
-                                </th>
-                            );
-                        })}
+                        <SearchForm
+                            schema={this.props.schema}
+                            uiSchema={this.props.uiSchema}
+                            widgets={defaultWidgets}
+                            fields={Fields}
+                            ObjectFieldTemplate={(props) => {
+                                return props.properties.map((prop) => prop.content);
+                            }}
+                            FieldTemplate={(props) => {
+                                if (props.id === "root") {
+                                    return props.children;
+                                } else {
+                                    return (
+                                        <th style={{ backgroundColor: "inherit" }}>
+                                            {props.children}
+                                        </th>
+                                    );
+                                }
+                            }}
+                        />
                     </tr>
                 </>
             );
@@ -133,26 +149,61 @@ export class CustTable extends React.PureComponent<IState, any> {
                 },
             }),
         );
-
-        // this.setState(aaa);
     };
+
     public render() {
-        const { properties, schema, data, uiSchema } = this.props;
+        const { properties, schema, data, uiSchema, getTableProps } = this.props;
+
         const ui$order = _.chain<string[]>(uiSchema.ui$order || []);
         const columns = CustTable.getColumns(properties, ui$order);
-        return (
-            <Table
-                className={"components-table-demo-drag-sorting"}
-                columns={columns.value()}
-                dataSource={data}
-                components={this.getComponents(schema)}
-                onRow={(record, index) => ({
-                    index,
-                    moveRow: this.moveRow,
-                })}
-            />
-        );
+        let tablePorps = {
+            columns: columns.value(),
+            dataSource: data,
+            components: this.getComponents(schema),
+            onRow: (record, index) => ({
+                index,
+                moveRow: this.moveRow,
+            }),
+            pagination: false,
+        };
+        if (getTableProps) {
+            tablePorps = {
+                ...tablePorps,
+                ...(getTableProps({
+                    ui$order,
+                    columns,
+                    properties,
+                    schema,
+                    data,
+                    uiSchema,
+                }) || {}),
+            };
+        }
+        return <Table {...(tablePorps as any)} />;
     }
 }
 
-export default connect<any>((state) => state)(DragDropContext(HTML5Backend)(CustTable));
+export default DragDropContext(HTML5Backend)((props?: any) => {
+    return (
+        <Consumer
+            select={[
+                (state: IState) => state.search,
+                (state: IState) => state.properties,
+                (state: IState) => state.data,
+                (state: IState) => state.schema,
+                (state: IState) => state.uiSchema,
+            ]}
+        >
+            {(search: any, properties: any, data: any, schema: any, uiSchema: any) => (
+                <CustTable
+                    search={search}
+                    properties={properties}
+                    data={data}
+                    schema={schema}
+                    uiSchema={uiSchema}
+                    getTableProps={props.getTableProps}
+                />
+            )}
+        </Consumer>
+    );
+});
