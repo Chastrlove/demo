@@ -9,6 +9,7 @@ import ListView from "./list.view";
 import DatasView from "./datas.view";
 import FormView from "./form.view";
 import H5View from "./h5.view";
+import appStore from '../../entries/index/app.store'
 
 @observer
 export default class TemplatesView extends React.Component {
@@ -20,6 +21,10 @@ export default class TemplatesView extends React.Component {
 
     private showH5Form = () => {
         this.store.setShowH5Form();
+    }
+
+    private editTemplate = () => {
+        console.log(appStore.currentTemplate)
     }
 
     public render() {
@@ -44,7 +49,17 @@ export default class TemplatesView extends React.Component {
                     <Card
                         title={store.title}
                         extra={
-                            <Row gutter={24}>
+                            <Row gutter={8}>
+                                <Col className="gutter-row" span={12}>
+                                    <Link to={"/editor"}>
+                                        <Button
+                                            style={{width: "100%"}}
+                                            htmlType={"button"}
+                                        >
+                                            <Icon type="edit" /> 编辑模板
+                                        </Button>
+                                    </Link>
+                                </Col>
                                 <Col className="gutter-row" span={12}>
                                     <Button
                                         type="primary"
@@ -53,16 +68,6 @@ export default class TemplatesView extends React.Component {
                                         onClick={this.showForm}
                                     >
                                         <Icon type="plus"/> 新增表单
-                                    </Button>
-                                </Col>
-                                <Col className="gutter-row" span={12}>
-                                    <Button
-                                        type="primary"
-                                        style={{width: "100%"}}
-                                        htmlType={"button"}
-                                        onClick={this.showH5Form}
-                                    >
-                                        <Icon type="plus"/> 新增H5
                                     </Button>
                                 </Col>
                             </Row>

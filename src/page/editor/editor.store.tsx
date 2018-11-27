@@ -44,4 +44,8 @@ export default class EditorStore {
     public addTemplate = (template) => {
         return EditorStore.templateApi.addTemplate(template);
     }
+
+    public editoTemplate = (template) =>{
+        return EditorStore.templateApi.updateTemplate(template);
+    }
 }

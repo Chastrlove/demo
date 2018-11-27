@@ -1,6 +1,6 @@
 import {observer} from 'mobx-react';
 import * as React from 'react';
-import {Menu} from 'antd';
+import {Icon, Menu} from 'antd';
 import TemplatesStore from "./templates.store";
 import {autorun} from "mobx";
 import appStore from 'entries/index/app.store';

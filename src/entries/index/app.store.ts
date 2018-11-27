@@ -1,6 +1,7 @@
 import {action, observable} from "mobx";
 import {routes} from "./route";
 import {IItem} from "../../component/headerMenu/HeaderMenu";
+import {Template} from "api";
 
 export class AppStore {
 
@@ -40,10 +41,10 @@ export class AppStore {
     public changeMenu = (path: string[]) => this.selectedKeys = path;
 
     @observable
-    public currentTemplate: any = {};
+    public currentTemplate: Partial<Template> = {};
 
     @action
-    public setCurrentTemplate = (currentTemplate = {}) => this.currentTemplate = currentTemplate;
+    public setCurrentTemplate = (currentTemplate: Partial<Template> = {}) => this.currentTemplate = currentTemplate;
 }
 
 export default new AppStore();

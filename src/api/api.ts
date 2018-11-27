@@ -254,6 +254,12 @@ export interface Entire extends BaseWidget {
     uiSchema: UISchema;
     /**
      * 
+     * @type {any}
+     * @memberof Entire
+     */
+    uiDefinitions?: any;
+    /**
+     * 
      * @type {UISchema}
      * @memberof Entire
      */

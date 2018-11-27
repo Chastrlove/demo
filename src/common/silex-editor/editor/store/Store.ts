@@ -56,10 +56,8 @@ export class Store {
     // };
 
     @action
-    public setForm = () => {
-        console.log(toJS(this.form));
-
-        this.form = toJS(this.form);
+    public setForm = (form = toJS(this.form)) => {
+        this.form = form;
     };
     /**
      * 生成一个唯一的key
