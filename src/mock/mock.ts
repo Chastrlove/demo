@@ -16,11 +16,10 @@ export default () => {
             "schema": {
                 "type": "string",
                 "title": "多选框",
-                "enums": ["选项1", "选项2", "选项3"],
-                "items": {"type": "string", "default": ""},
+                "enum": ["选项1", "选项2", "选项3"],
                 "definitions": {
                     "title": {"type": "string", "title": "名称", "description": "注：最多20字", "maxLength": 20},
-                    "enums": {
+                    "enum": {
                         "type": "array",
                         "title": "选项配置",
                         "description": "最多50项，每项最多20字",
@@ -36,7 +35,7 @@ export default () => {
             "uiSchema": {"ui$widget": "select", "ui$placeholder": "请选择"},
             "uiDefinitions": {
                 "title": {"ui$widget": "text", "ui$placeholder": "请输入控件名称"},
-                "enums": {"ui$widget": "text", "ui$placeholder": "请输入"},
+                "enum": {"ui$widget": "text", "ui$placeholder": "请输入"},
                 "_ui$required": {"ui$widget": "checkbox"},
                 "_ui$print": {"ui$widget": "checkbox"},
                 "_ui$placeholder": {"ui$widget": "text", "ui$placeholder": "请输入控件名称"}

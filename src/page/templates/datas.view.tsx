@@ -7,6 +7,8 @@ import {toJS} from 'mobx';
 @observer
 export default class DatasView extends React.Component<{ store: TemplatesStore }> {
 
+    private createEdit = (item) => () => this.props.store.setCurrentDataAndShow(item);
+
     private columns = [{
         title: 'Name',
         dataIndex: 'name',
@@ -16,15 +18,17 @@ export default class DatasView extends React.Component<{ store: TemplatesStore }
     }, {
         title: 'Address',
         dataIndex: 'address',
+    }, {
+        render: (text, record) => <a href="javascript:;" onClick={this.createEdit(record)}>编辑</a>
     }];
 
 
     public render() {
 
-        const {data} = this.props.store;
+        const {datas} = this.props.store;
 
         return (
-            <Table pagination={false} columns={this.columns} dataSource={toJS(data)}/>
+            <Table pagination={false} columns={this.columns} dataSource={toJS(datas)}/>
         );
     }
 }

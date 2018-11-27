@@ -1,6 +1,7 @@
-import {action, computed, observable} from "mobx";
+import {action, computed, observable, toJS} from "mobx";
 import appStore from 'entries/index/app.store';
 import {TemplateApi, DataApi} from "api";
+import * as _ from 'lodash';
 
 export default class TemplatesStore {
 
@@ -18,9 +19,9 @@ export default class TemplatesStore {
     public setTemplates = (templates = []) => this.templates = templates;
 
     @observable
-    public data = [];
+    public datas = [];
     @action
-    public setData = (data = []) => this.data = data;
+    public setDatas = (datas = []) => this.datas = datas;
 
     @observable
     public currentTemplateKeys = [];
@@ -44,9 +45,20 @@ export default class TemplatesStore {
     public setShowH5Form = (showH5Form = !this.showH5Form) => this.showH5Form = showH5Form;
 
     @observable
-    public currentData = {};
+    public currentData: any = {
+        data: undefined,
+        schema: undefined,
+        uiSchema: undefined
+    };
     @action
-    public setCurrentData = (currentData = {}) => this.currentData = currentData;
+    public setCurrentData = (data = {}) => this.currentData = data;
+    @action
+    public setCurrentDataAndShow = (currentData = {}, type = 'setShowForm') => {
+        this.setCurrentData(currentData);
+        this[type]();
+    }
+    @action
+    public setData = (data = {}) => this.currentData.data = data;
 
     @computed
     public get title() {
@@ -61,5 +73,63 @@ export default class TemplatesStore {
 
     public loadTemplates = () => {
         return TemplatesStore.templateApi.getTemplates();
+    }
+
+    public submit = () => {
+        const currentId = this.currentData.id;
+        if(currentId){
+           return this.editForm()
+        } else {
+            return this.addForm();
+        }
+    }
+
+    public addForm = () => {
+        const currentData = toJS(this.currentData);
+        const currentTemplate = toJS(appStore.currentTemplate);
+        const templateId = currentTemplate.id;
+        console.log(currentData, currentTemplate);
+        // return Promise.reject({
+        //     msg: '新增失败'
+        // })
+        if (_.isEmpty(currentData) || _.isEmpty(currentTemplate)) {
+            return Promise.reject({
+                msg: '新增失败'
+            })
+        }
+
+        const now = Date.now();
+        return TemplatesStore.dataApi.addData({
+            "id": now.toString(),
+            "active": true,
+            "canUpdate": false,
+            _delete: false,
+            "createBy": '222',
+            "createTime": now,
+            "last": true,
+            "release": "1.0",
+            "schemaUpdate": true,
+            "system": false,
+            "updateBy": "zz",
+            "updateTime": now,
+            templateId: templateId,
+            data: currentData.data,
+            schema: currentData.schema || currentTemplate.schema,
+            uiSchema: currentData.uiSchema || currentTemplate.uiSchema
+        })
+    }
+
+    public editForm = () => {
+        const currentData = toJS(this.currentData);
+        if (_.isEmpty(currentData)) {
+            return Promise.reject({
+                msg: '新增失败'
+            })
+        }
+
+        const now = Date.now();
+        return TemplatesStore.dataApi.updateData(currentData, {
+            "updateTime": now,
+        })
     }
 }

@@ -166,10 +166,10 @@ export interface Base {
 export interface BaseWidget extends Base {
     /**
      * 
-     * @type {string}
+     * @type {JSONSchema}
      * @memberof BaseWidget
      */
-    schema: string;
+    schema: JSONSchema;
 }
 
 /**
@@ -211,7 +211,7 @@ export interface CustomUISchema {
  * @export
  * @interface Data
  */
-export interface Data extends Base {
+export interface Data extends Entire {
     /**
      * 
      * @type {any}
@@ -248,16 +248,16 @@ export interface DataQuery {
 export interface Entire extends BaseWidget {
     /**
      * 
-     * @type {string}
+     * @type {UISchema}
      * @memberof Entire
      */
-    uiSchema: string;
+    uiSchema: UISchema;
     /**
      * 
-     * @type {string}
+     * @type {UISchema}
      * @memberof Entire
      */
-    customUISchema?: string;
+    customUISchema?: UISchema;
 }
 
 /**

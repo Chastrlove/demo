@@ -32,13 +32,13 @@ export default class ListView extends React.Component<{ store: TemplatesStore }>
         super(props);
         const store: TemplatesStore = props.store;
         this.disposer = autorun(() => {
-            appStore.currentTemplate.id && store.loadData(appStore.currentTemplate).then(store.setData);
+            appStore.currentTemplate.id && store.loadData(appStore.currentTemplate).then(store.setDatas);
         });
         store.loadTemplates()
             .then(store.setTemplates)
             .then((templates) => {
                 const template = templates[0];
-                store.changeCurrentTemplateKeys({
+                template && store.changeCurrentTemplateKeys({
                     item: template,
                     key: template.id
                 })
