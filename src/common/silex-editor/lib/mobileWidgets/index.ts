@@ -5,9 +5,9 @@
  * FileName: index.ts
  */
 import { TextWidget } from "./TextWidget";
+import { FileWidget } from "./FileWidget";
 import { SelectWidget } from "./SelectWidget";
 import { SpaceWidget } from "./SpaceWidget";
-import { FileWidget } from "./FileWidget";
 
 export default {
     BaseInput: TextWidget,

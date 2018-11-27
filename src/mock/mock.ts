@@ -14,8 +14,10 @@ export default () => {
             "updateBy": "aliquip exercitation ut",
             "updateTime": 3333,
             "schema": {
-                "type": "string",
+                "type": "array",
                 "title": "多选框",
+                "enums": ["选项1", "选项2", "选项3"],
+                "items": {"type": "string", "default": ""},
                 "definitions": {
                     "title": {"type": "string", "title": "名称", "description": "注：最多20字", "maxLength": 20},
                     "enums": {
@@ -24,7 +26,6 @@ export default () => {
                         "description": "最多50项，每项最多20字",
                         "maxItems": 50,
                         "minItems": 1,
-                        "default": ["选项1", "选项2", "选项3"],
                         "items": {"type": "string", "default": ""}
                     },
                     "_ui$required": {"type": "boolean", "title": "验证", "description": "验证（如不勾选，提交表单时不校验）"},

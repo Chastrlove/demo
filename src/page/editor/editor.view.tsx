@@ -5,6 +5,7 @@ import {Editor} from 'silex-editor/editor/Editor';
 import {Button, Card, message, Input} from "antd";
 import {autorun, toJS} from "mobx";
 import * as _ from 'lodash';
+import mock from "../../mock/mock";
 
 @observer
 export default class EditorView extends React.Component {
@@ -76,7 +77,7 @@ export default class EditorView extends React.Component {
             >
                 <Editor
                     loader={(store) => {
-                        editorStore.loadWidgets().then((data) => {
+                        mock().then((data) => {
                             store.leftModule.setWidgetList(data);
                             autorun(() => {
                                 editorStore.setFormData(store.form);
