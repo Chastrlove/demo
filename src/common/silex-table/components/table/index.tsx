@@ -194,16 +194,18 @@ export default DragDropContext(HTML5Backend)((props?: any) => {
                 (state: IState) => state.uiSchema,
             ]}
         >
-            {(search: any, properties: any, data: any, schema: any, uiSchema: any) => (
-                <CustTable
-                    search={search}
-                    properties={properties}
-                    data={data}
-                    schema={schema}
-                    uiSchema={uiSchema}
-                    getTableProps={props.getTableProps}
-                />
-            )}
+            {(search: any, properties: any, data: any, schema: any, uiSchema: any) => {
+                return (
+                    <CustTable
+                        search={search}
+                        properties={properties}
+                        data={data}
+                        schema={schema}
+                        uiSchema={uiSchema}
+                        getTableProps={props.getTableProps}
+                    />
+                )
+            }}
         </Consumer>
     );
 });
