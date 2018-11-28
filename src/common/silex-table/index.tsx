@@ -22,7 +22,7 @@ class SilexTable<T extends IState = any> extends React.PureComponent<ISchemaTabl
         });
         return (
             <Provider initialState={initialState}>
-                <Card bodyStyle={{overflow: "auto"}} title={actions} extra={<ToolBar/>}>
+                <Card bodyStyle={{overflow: "auto"}} title={actions} extra={<ToolBar/>} style={{height:'100%'}}>
                     <CustomTable getTableProps={getTableProps}/>
                 </Card>
             </Provider>
