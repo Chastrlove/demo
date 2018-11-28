@@ -7,6 +7,7 @@ import {autorun, runInAction, toJS} from "mobx";
 import * as _ from 'lodash';
 import mock from "../../mock/mock";
 import appStore from 'entries/index/app.store'
+import * as style from './editor.style.pcss'
 
 @observer
 export default class EditorView extends React.Component {
@@ -99,6 +100,8 @@ export default class EditorView extends React.Component {
         const title = uiSchema.ui$title ? uiSchema.ui$title : editorStore.title;
         return (
             <Card
+                className={style.card}
+                bodyStyle={{padding:0}}
                 title={<Input style={{width: "25%"}} value={title} placeholder={'请输入名称'} onChange={this.changeTitle}/>}
                 extra={
                     <Button
