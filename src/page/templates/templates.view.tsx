@@ -46,36 +46,7 @@ export default class TemplatesView extends React.Component {
                     <ListView store={store}/>
                 </Layout.Sider>
                 <Layout.Content>
-                    <Card
-                        title={store.title}
-                        extra={
-                            <Row gutter={8}>
-                                <Col className="gutter-row" span={12}>
-                                    <Link to={"/editor"}>
-                                        <Button
-                                            style={{width: "100%"}}
-                                            htmlType={"button"}
-                                        >
-                                            <Icon type="edit" /> 编辑模板
-                                        </Button>
-                                    </Link>
-                                </Col>
-                                <Col className="gutter-row" span={12}>
-                                    <Button
-                                        type="primary"
-                                        style={{width: "100%"}}
-                                        htmlType={"button"}
-                                        onClick={this.showForm}
-                                    >
-                                        <Icon type="plus"/> 新增表单
-                                    </Button>
-                                </Col>
-                            </Row>
-                        }
-                    >
-                        <DatasView store={store}/>
-                    </Card>
-
+                    <DatasView store={store}/>
                 </Layout.Content>
                 <FormView store={store}/>
                 <H5View store={store}/>
