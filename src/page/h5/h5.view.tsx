@@ -1,4 +1,7 @@
 import * as React from "react";
+import { observer } from 'mobx-react';
+
+import * as _ from 'lodash';
 
 import SilexH5 from "../../common/silex-h5";
 
@@ -6,19 +9,16 @@ import { H5Store } from './h5.store';
 
 import * as styles from './h5.style.pcss';
 
+@observer
 class H5View extends React.Component {
   public store = new H5Store();
 
-  constructor(props) {
-    super(props);
+  public onSubmit = (data) => {
 
-    this.state={
-      ...this.store.samples,
-      onSubmit: (data) => {
-        console.log(data.formData);
-      }
-    };
-  }
+    this.store.addData({data: data.formData}).then(result => {
+      console.log(result);
+    });
+  };
 
   public render() {
     return (
@@ -27,7 +27,7 @@ class H5View extends React.Component {
           <h1 className={styles.appTitle}>Welcome to Silex-H5</h1>
         </header>
         <div className={styles.appContent}>
-          <SilexH5 {...this.state} />
+          <SilexH5 {...this.store.samples} onSubmit={this.onSubmit} />
         </div>
       </div>
     );
