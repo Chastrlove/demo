@@ -45,6 +45,9 @@ export class AppStore {
 
     @action
     public setCurrentTemplate = (currentTemplate: Partial<Template> = {}) => this.currentTemplate = currentTemplate;
+
+    public templatesType: 'add' | 'edit' = 'add';
+    public setTemplatesType = (type: 'add' | 'edit' = 'add') => this.templatesType = type
 }
 
 export default new AppStore();

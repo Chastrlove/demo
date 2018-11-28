@@ -38,6 +38,9 @@ export default class DatasView extends React.Component<{ store: TemplatesStore }
                         <Button
                             style={{width: "100%"}}
                             htmlType={"button"}
+                            onClick={() => {
+                                appStore.setTemplatesType('edit')
+                            }}
                         >
                             <Icon type="edit"/> 编辑模板
                         </Button>
@@ -61,7 +64,7 @@ export default class DatasView extends React.Component<{ store: TemplatesStore }
         console.log(argument);
     };
 
-    private getTableProps = () =>{
+    private getTableProps = () => {
         return []
     }
 
@@ -75,7 +78,7 @@ export default class DatasView extends React.Component<{ store: TemplatesStore }
             initialState: {
                 schema: currentTemplate.schema || {},
                 uiSchema: currentTemplate.uiSchema || {},
-                data: toJS(datas.map((data)=>data.data)),
+                data: toJS(datas.map((data) => data.data)),
                 search: "search",
             },
             dataLoader: this.dataLoader,

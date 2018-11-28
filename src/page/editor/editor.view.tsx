@@ -85,6 +85,7 @@ export default class EditorView extends React.Component {
         this.editorStore.setTitle();
         this.disposer();
         this.setType();
+        appStore.setTemplatesType();
     }
 
     private disposer;
@@ -114,7 +115,7 @@ export default class EditorView extends React.Component {
                         mock().then((widgetList) => {
                             runInAction(() => {
                                 store.leftModule.setWidgetList(widgetList);
-                                if (currentTemplate.id) {
+                                if (currentTemplate.id && appStore.templatesType === 'edit') {
                                     const {
                                         schema = {
                                             type: "object",

@@ -192,6 +192,8 @@ export interface Config {
  * @interface CustomUISchema
  */
 export interface CustomUISchema {
+    [key: string]: any | any;
+
     /**
      * 
      * @type {UISchema}
@@ -665,6 +667,8 @@ export interface TemplateIntance {
  * @interface UISchema
  */
 export interface UISchema {
+    [key: string]: any | any;
+
     /**
      * 
      * @type {Uiwidget}

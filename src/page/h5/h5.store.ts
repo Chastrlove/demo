@@ -1,6 +1,8 @@
 import {TemplateApi, DataApi} from "api";
 import { action, observable } from 'mobx';
 
+import * as _ from 'lodash';
+
 import samples from "../../samples/index";
 
 export class H5Store {
@@ -12,13 +14,17 @@ export class H5Store {
     basePath: 'http://localhost:3000/api/v1'
   });
 
+  private templateId: string;
+
   @observable
   public samples = samples.Widgets;
 
   constructor() {
     const urlParams = new URLSearchParams(window.location.search);
 
-    this.getTemplate(urlParams.get('id')).then((data: any) => {
+    this.templateId = urlParams.get('id');
+
+    this.getTemplate(this.templateId).then((data: any) => {
       if(data && data.schema && data.uiSchema) {
         this.samples = data;
       }
@@ -32,6 +38,10 @@ export class H5Store {
 
   @action
   public addData = (data) => {
-    return this.dataApi.addData(data);
+
+    return this.dataApi.addData(_.assign(data, {
+      templateId: this.templateId,
+      data: data.formData
+    }));
   };
 }
