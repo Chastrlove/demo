@@ -30,7 +30,7 @@ export default class TemplatesView extends React.Component {
     public render() {
         const store = this.store;
         return (
-            <Layout>
+            <Layout style={{height:'100%'}}>
                 <Layout.Sider theme={"light"} width={250}>
                     <div className={styles.temp}>
                         <Link to={"/editor"}>
@@ -46,7 +46,7 @@ export default class TemplatesView extends React.Component {
                     <ListView store={store}/>
                 </Layout.Sider>
                 <Layout.Content>
-                    <Card
+                    <Card style={{height:'100%'}}
                         title={store.title}
                         extra={
                             <Row gutter={8}>
