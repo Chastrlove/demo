@@ -61,7 +61,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "react-scripts-tlss test --env=jsdom"
+    "test": "react-scripts-tlss test --env=jsdom",
+    "tcm": "tcm -p ./src/**/*.pcss && tcm -p ./src/**/*.pcss -w"
   },
   "devDependencies": {
     "@types/globby": "^8.0.0",
@@ -76,6 +77,7 @@
     "postcss-plugin-px2rem": "^0.8.0",
     "postcss-preset-env": "^6.4.0",
     "precss": "^4.0.0",
+    "typed-css-modules": "^0.3.7",
     "ts-import-plugin": "^1.5.5",
     "typescript": "^3.1.6"
   },

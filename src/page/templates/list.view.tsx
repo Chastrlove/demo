@@ -4,6 +4,7 @@ import {Icon, Menu} from 'antd';
 import TemplatesStore from "./templates.store";
 import {autorun} from "mobx";
 import appStore from 'entries/index/app.store';
+import * as style from './list.style.pcss'
 
 @observer
 export default class ListView extends React.Component<{ store: TemplatesStore }> {
@@ -53,6 +54,7 @@ export default class ListView extends React.Component<{ store: TemplatesStore }>
         const {templates, currentTemplateKeys} = this.props.store;
         return (
             <Menu
+                className={style.menu}
                 onClick={this.changeCurrentTemplateKeys}
                 mode="inline"
                 selectedKeys={currentTemplateKeys}

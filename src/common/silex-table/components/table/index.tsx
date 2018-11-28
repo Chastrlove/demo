@@ -12,6 +12,7 @@ import { actions, Consumer } from "../../store";
 import { IState } from "../../types";
 import { IProperty } from "../../utils";
 import { BodyRow } from "./BodyRow";
+import { TableProps } from "antd/lib/table";
 
 export interface ICustTableProps extends IState {
     getTableProps?: any;
@@ -156,14 +157,18 @@ export class CustTable extends React.PureComponent<ICustTableProps, any> {
 
         const ui$order = _.chain<string[]>(uiSchema.ui$order || []);
         const columns = CustTable.getColumns(properties, ui$order);
-        let tablePorps = {
+        let tablePorps:TableProps<any> = {
             columns: columns.value(),
             dataSource: data,
+            locale:{emptyText: '暂无数据' },
             components: this.getComponents(schema),
             onRow: (record, index) => ({
                 index,
                 moveRow: this.moveRow,
             }),
+            scroll:{
+                x:columns.value().length*328,
+            },
             pagination: false,
         };
         if (getTableProps) {
